@@ -1,0 +1,17 @@
+body {
+    /* Esto crea el degradado: dirección y colores */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    
+    /* Muy importante: esto asegura que el fondo cubra TODA la pantalla */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Color de letra para que resalte sobre el fondo oscuro */
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
