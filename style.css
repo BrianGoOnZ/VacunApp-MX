@@ -47,6 +47,7 @@ a.menu {
 .action-section {
 
 }
+
 .btn-action {
     text-align: center; /*Alinea el texto*/
     min-width: 120px; /*Largo del boton*/
@@ -54,25 +55,63 @@ a.menu {
     border-radius: 15px; /*Redondea los bordes de los botones*/
     padding: 10px 20px; /*Tamano de los borden de los botones -iniciar y crear-*/
     text-decoration: none; /*Quita la linea del link en los botones*/
-    display: inline-block;
     transition: 0.5s;
 }
 
 .btn-action:hover {
     background-color: #000291; /*Color al pasar el mouse en el boton*/
-    color: #F2F2F2;
+    color: #F2F2F2; /*Color de letra al poner el cursor en el boton*/
 }
 
 .news-container {
-    margin-top: 10px; /*Espacio entre ver mas y las nuevas noticias*/
+    font-size: 15px; /*Tamano de la letra en sección de noticias pequenas*/ 
+    margin-top: 10px; /*Espacio entre ver mas y las nuevas noticias*/    
 }
 
-.news-container {
-    font-size: 15px;
-    
+.new-card {
+    font-size: 40px;
 }
 
 .img-card {
     max-width: 15%; /*Tamano de la imagen*/
     border-radius: 10%; /*Borde redondo para la imagen*/
+}
+
+.login-text {
+    color: #000291; /*Color del texto -iniciar sesión-*/
+}
+
+.login-card{
+    margin: 30px; /*Margen para la card login*/
+    border: 2px solid black; /*Grosor del borde de card login*/
+    background-color: #FFFFFF; /*Color de la card login*/
+    padding: 180px; /*Tamano de la card login*/
+}
+.input-curp {
+    margin-bottom: 30px; /*Separación entre botones curp-password*/
+}
+
+.input-password {
+    margin-bottom: 30px; /*Margen de separacion entre los objetos*/
+}
+
+.inicio-login {
+    background-color: #000291; /*Color del boton*/
+    text-decoration: none; /*Quita la linea del enlace*/
+    color: #F2F2F2; /*Color de la letra*/
+    padding: 10px 20px; /*Le da el tamano al boton*/
+    border-radius: 10px; /*Redondea los bordes de los botones*/
+    font-size: 20px; /*Tamano de la letra*/
+    transition: 0.5s; /*Efecto al colocar el mouse*/
+    padding: 10px 50px; /*Espacio interno del boton (crece)*/
+    margin: 10px; /*Margen , se mueve el boton a la derecha*/
+}
+
+.inicio-login:hover {
+    background-color: #000291; /*Color al pasar el mouse en el boton*/
+    color: #F2F2F2; /*Color de letra al poner el cursor en el boton*/
+}
+
+.recover-password {
+    font-size: 10px;
 }
