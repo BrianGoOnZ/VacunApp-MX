@@ -1,24 +1,30 @@
 body{
-    margin: 0; /*Para que la pantalla ocupe todo el espacio*/
+    margin: 0px; /*Para que la pantalla ocupe todo el espacio*/
+    background-color: #F2F2F2;
 }
 .navbar {
     background-color: #000291; /*Color azul de la barra*/
-    text-align: right; /*Alinea a la derecha los botones del menú*/
-    padding: 20px; /*Tamano del navbar -barra azul superior-*/
-
 }
+
 a.menu {
     font-size: 18px; /*Tamano de la letra dentro del boton -navbar-*/
     color: #F2F2F2; /*Color de la letra dentro del boton -navbar-*/
     text-decoration: none; /*Quita los bordes de enlace del boton -navbar-*/
-    border: 2px solid #F2F2F2; /*Bordes del menú para darle estilo de boton*/
+    border: 1.5px solid #F2F2F2; /*Bordes del menú para darle estilo de boton*/
     border-radius: 15px; /*Redondea los bordes de los botones*/
     padding: 10px 20px; /*Tamano de los borden de los botones -navbar-*/
+}
+
+.menu:hover {
+    background-color: #F2F2F2;
+    color: #000291;
+    transition: 0.3s;
 }
 
 .text_bienvenida {
     color: #000291; /*Color del texto de bienvenida*/
     text-align: center; /*Alineación en la pantalla del texto*/
+    font-size: 45px;
 }
 
 .home-screen {
@@ -32,16 +38,21 @@ a.menu {
     display: flex;
     flex-direction: column; /*Pone el contenido en columna -uno abajo del otro-*/
     justify-content: center; /*Alineacion centrada de el contenido*/
-    align-items: center; /*Alineación del contenido al centro en cada lado de la pantalla*/
     padding: 0px; /*Espacio entre los bordes de la sección*/   
     gap: 20px; /*Separacion entre botones*/
     color: #000291; /*Color del texto "campana de vacunacion*/
 }
 
+.right-site {
+    
+}
+
 .campana-2026 {
-    max-width: 50%; /*Tamano de la imagen*/
+    max-width: 350px; /*Tamano de la imagen*/
     margin: 0%; /*Espacio entre el texto campana de vacunacion y la imagen*/
     border-radius: 7%; /*Borde redondo para la imagen*/
+    align-content: end;
+    display: flex;
 }
 
 .action-section {
@@ -49,13 +60,12 @@ a.menu {
 }
 
 .btn-action {
-    text-align: center; /*Alinea el texto*/
-    min-width: 120px; /*Largo del boton*/
+    text-align: center; /*Alinea el texto dentro del boton*/
     border: 2px solid #000291; /*Bordes redondos para darle estilo de boton*/
     border-radius: 15px; /*Redondea los bordes de los botones*/
-    padding: 10px 20px; /*Tamano de los borden de los botones -iniciar y crear-*/
+    padding: 10px 10px; /*Tamano de los borden de los botones -iniciar y crear- 1er px alto, 2do px ancho*/
     text-decoration: none; /*Quita la linea del link en los botones*/
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .btn-action:hover {
@@ -64,12 +74,12 @@ a.menu {
 }
 
 .news-container {
-    font-size: 15px; /*Tamano de la letra en sección de noticias pequenas*/ 
-    margin-top: 10px; /*Espacio entre ver mas y las nuevas noticias*/    
+    font-size: 100px; /*Tamano de la letra en sección de noticias pequenas*/ 
+    margin-top: 0px; /*Espacio entre ver mas y las nuevas noticias*/    
 }
 
 .new-card {
-    font-size: 40px;
+    font-size: 10px;
 }
 
 .img-card {
@@ -115,6 +125,12 @@ a.menu {
 .recover-password {
     font-size: 10px;
 }
+
+
+
+
+
+
 
 
 /* Crear Perfil */
@@ -186,3 +202,5 @@ a.menu {
 .btn-continuar:hover {
     background-color: #357abd; 
 }
+
+/* Fin de la parte de crear perfil*/
