@@ -115,59 +115,70 @@ a.menu {
 .recover-password {
     font-size: 10px;
 }
-/* --- Estilos para la pantalla Crear Perfil --- */
 
-.tarjeta-formulario {
-    background-color: white;
-    border-radius: 20px;
-    padding: 25px;
-    width: 350px;
-    margin: 0 auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-}
 
-.campo-grupo {
-    text-align: left;
-    margin-bottom: 12px;
-}
+/* Crear Perfil */
 
-.campo-grupo label {
-    display: block;
-    color: #1a3a63; /* Azul oscuro para los textos */
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-family: sans-serif;
-}
 
-.input-azul-claro {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: none;
-    background-color: #e8f1f9; /* Color azul claro de tus inputs */
+.home-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;     /* Centra horizontalmente */
+    min-height: 100vh;      /* Ocupa el 100% de la altura de la ventana */
+    padding: 20px;
     box-sizing: border-box;
 }
 
-.btn-gris-foto {
-    background-color: #e8f1f9;
-    border: 1px solid #ccc;
-    padding: 8px 15px;
-    border-radius: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    font-size: 13px;
+
+.tarjeta-blanca {
+    background-color: #ffffff;
+    border-radius: 25px;    /* Bordes más redondeados */
+    padding: 40px;          /* Más espacio por dentro */
+    width: 100%;
+    max-width: 500px;      
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más suave y grande */
+    text-align: center;
 }
 
-.btn-continuar-azul {
-    background-color: #4a90e2; 
+
+.campo {
+    text-align: left;
+    margin-bottom: 20px;    /* Más separación entre campos */
+}
+
+.campo label {
+    display: block;
+    color: #1a3a63;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1.1rem;    }  
+
+.input-azul {
+    width: 100%;
+    padding: 15px;          /* Campos más altos */
+    border-radius: 12px;
+    border: none;
+    background-color: #e8f1f9;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+
+.btn-continuar {
+    background-color: #4a90e2;
     color: white;
     border: none;
-    padding: 15px;
+    padding: 18px;          /* Botón más grande */
     border-radius: 15px;
     width: 100%;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;        /* Texto más grande */
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.btn-continuar:hover {
+    background-color: #357abd; 
 }
