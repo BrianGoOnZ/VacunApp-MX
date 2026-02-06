@@ -121,7 +121,7 @@ a.menu {
 .navbar {
     background-color: #000291; /*Color azul de la barra*/
     text-align: right; /*Alinea a la derecha los botones del menú*/
-    padding: 20px; /*Tamano del navbar -barra azul superior-*/}
+    padding: 30px; /*Tamano del navbar -barra azul superior-*/}
 
 
 .home-screen {
@@ -148,14 +148,14 @@ a.menu {
 
 .campo {
     text-align: left;
-    margin-bottom: 30px;    /* Más separación entre campos */
+    margin-bottom: 50px;    /* Más separación entre campos */
 }
 
 .campo label {
     display: block;
     color: #1a3a63;
     font-weight: bold;
-    margin-bottom: 14px;
+    margin-bottom: 25px;
     font-size: 1.2rem;    }  
 
 .input-azul {
