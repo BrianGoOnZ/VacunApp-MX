@@ -118,6 +118,10 @@ a.menu {
 
 
 /* Crear Perfil */
+.navbar {
+    background-color: #000291; /*Color azul de la barra*/
+    text-align: right; /*Alinea a la derecha los botones del menú*/
+    padding: 20px; /*Tamano del navbar -barra azul superior-*/}
 
 
 .home-screen {
