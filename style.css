@@ -1,0 +1,120 @@
+body{
+    margin: 0; /*Para que la pantalla ocupe todo el espacio*/
+}
+.navbar {
+    background-color: #000291; /*Color azul de la barra*/
+    text-align: right; /*Alinea a la derecha los botones del menú*/
+    padding: 20px; /*Tamano del navbar -barra azul superior-*/
+
+}
+a.menu {
+    font-size: 18px; /*Tamano de la letra dentro del boton -navbar-*/
+    color: #F2F2F2; /*Color de la letra dentro del boton -navbar-*/
+    text-decoration: none; /*Quita los bordes de enlace del boton -navbar-*/
+    border: 2px solid #F2F2F2; /*Bordes del menú para darle estilo de boton*/
+    border-radius: 15px; /*Redondea los bordes de los botones*/
+    padding: 10px 20px; /*Tamano de los borden de los botones -navbar-*/
+}
+
+.text_bienvenida {
+    color: #000291; /*Color del texto de bienvenida*/
+    text-align: center; /*Alineación en la pantalla del texto*/
+}
+
+.home-screen {
+    display: flex; 
+    justify-content: space-around;
+    background-color: #f5f5f5; /*Color de la seccion de noticias y botones inicio-crear*/
+}
+
+.left-site, .right-site {
+    width: 50%; /*divide la pantalla equitativamente*/
+    display: flex;
+    flex-direction: column; /*Pone el contenido en columna -uno abajo del otro-*/
+    justify-content: center; /*Alineacion centrada de el contenido*/
+    align-items: center; /*Alineación del contenido al centro en cada lado de la pantalla*/
+    padding: 0px; /*Espacio entre los bordes de la sección*/   
+    gap: 20px; /*Separacion entre botones*/
+    color: #000291; /*Color del texto "campana de vacunacion*/
+}
+
+.campana-2026 {
+    max-width: 50%; /*Tamano de la imagen*/
+    margin: 0%; /*Espacio entre el texto campana de vacunacion y la imagen*/
+    border-radius: 7%; /*Borde redondo para la imagen*/
+}
+
+.action-section {
+
+}
+
+.btn-action {
+    text-align: center; /*Alinea el texto*/
+    min-width: 120px; /*Largo del boton*/
+    border: 2px solid #000291; /*Bordes redondos para darle estilo de boton*/
+    border-radius: 15px; /*Redondea los bordes de los botones*/
+    padding: 10px 20px; /*Tamano de los borden de los botones -iniciar y crear-*/
+    text-decoration: none; /*Quita la linea del link en los botones*/
+    transition: 0.5s;
+}
+
+.btn-action:hover {
+    background-color: #000291; /*Color al pasar el mouse en el boton*/
+    color: #F2F2F2; /*Color de letra al poner el cursor en el boton*/
+}
+
+.news-container {
+    font-size: 15px; /*Tamano de la letra en sección de noticias pequenas*/ 
+    margin-top: 10px; /*Espacio entre ver mas y las nuevas noticias*/    
+}
+
+.new-card {
+    font-size: 40px;
+}
+
+.img-card {
+    max-width: 15%; /*Tamano de la imagen*/
+    border-radius: 10%; /*Borde redondo para la imagen*/
+}
+
+.login-text {
+    color: #000291; /*Color del texto -iniciar sesión-*/
+}
+
+.login-card{
+    margin: 30px; /*Margen para la card login*/
+    border: 2px solid black; /*Grosor del borde de card login*/
+    background-color: #FFFFFF; /*Color de la card login*/
+    padding: 180px; /*Tamano de la card login*/
+}
+.input-curp {
+    margin-bottom: 30px; /*Separación entre botones curp-password*/
+}
+
+.input-password {
+    margin-bottom: 30px; /*Margen de separacion entre los objetos*/
+}
+
+.inicio-login {
+    background-color: #000291; /*Color del boton*/
+    text-decoration: none; /*Quita la linea del enlace*/
+    color: #F2F2F2; /*Color de la letra*/
+    padding: 10px 20px; /*Le da el tamano al boton*/
+    border-radius: 10px; /*Redondea los bordes de los botones*/
+    font-size: 20px; /*Tamano de la letra*/
+    transition: 0.5s; /*Efecto al colocar el mouse*/
+    padding: 10px 50px; /*Espacio interno del boton (crece)*/
+    margin: 10px; /*Margen , se mueve el boton a la derecha*/
+}
+
+.inicio-login:hover {
+    background-color: #000291; /*Color al pasar el mouse en el boton*/
+    color: #F2F2F2; /*Color de letra al poner el cursor en el boton*/
+}
+
+.recover-password {
+    font-size: 10px;
+}
+
+
+/* Configuracion de la contraseña */
