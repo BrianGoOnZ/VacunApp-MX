@@ -1,0 +1,52 @@
+/* Espaciado para el contenedor */
+.contenido-tabla {
+    display: flex; /* Flexbox */
+    justify-content: center; /* Centrado horizontal */
+    align-items: flex-start; /* Alineación al tope */
+    padding: 50px; /* Espaciado interno */
+    gap: 30px; /* Espacio entre botones y tabla */
+    background-color: #f0f2f5; /* Fondo gris claro */
+}
+
+/* Propiedades de Borde y Espaciado para la tabla */
+.tabla-vacunas {
+    width: 80%; /* Ancho */
+    border-collapse: collapse; /* Quita espacios entre bordes */
+    background-color: #ffffff; /* Fondo  */
+}
+
+/* Fondo para los encabezados */
+.tabla-vacunas th {
+    background-color: #6d96c8; 
+    color: #000000; /* Texto  */
+    font-family: Arial, sans-serif; /* Fuente */
+    font-size: 16px; 
+    font-weight: bold; /* Texto negrita */
+    border: 2px solid #333333; /* Borde sólido */
+    padding: 15px;
+}
+
+/*Estructura de filas */
+.tabla-vacunas td {
+    border: 1px solid #333333;
+    padding: 20px;
+    height: 50px;
+    text-align: center;
+}
+
+/* Fondo para la primera columna */
+.columna-azul {
+    background-color: #94bad9;
+}
+
+/*botones */
+.inicio-login {
+    transition: all 0.3s ease; /* Transición  */
+    border-radius: 12px; /* Borde redondeado */
+    cursor: pointer;
+}
+
+.inicio-login:hover {
+    opacity: 0.8; /* Opacidad  */
+    transform: scale(1.05); /* Un pequeño efecto de aumento */
+}
