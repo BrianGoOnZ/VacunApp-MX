@@ -2,20 +2,45 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Vacunas - Personalizado</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="disvacunas.css">
-</head>
+    <title>VacunApp - Mis Vacunas</title>
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/disvacunas.css"> </head>
 <body class="pantalla-vacunas">
 
-    <nav>
-        <a href="#" class="menu">Vacunas</a>
+    <nav class="navbar">
+        <div class="navbar_menu">
+            <a href="index.html" class="menu">Inicio</a>
+            <a href="vacunas.html" class="menu">Vacunas</a>
+            <a href="#" class="menu">Calendario</a>
+            <a href="#" class="menu">Centros</a>
+        </div>
     </nav>
 
-    <main class="contenido-tabla">
-        <h1>Listado de Vacunas</h1>
-        <p>Aquí aparecerá la información de tus vacunas.</p>
-        </main>
+    <main class="contenedor-principal">
+        <div class="sidebar">
+            <button class="btn-azul">+ Añadir vacuna</button>
+            <button class="btn-azul">+ Recordatorio</button>
+        </div>
+
+        <table class="tabla-diseno">
+            <thead>
+                <tr>
+                    <th class="encabezado-azul">Vacuna</th>
+                    <th class="encabezado-azul">ENFERMEDAD QUE PREVIENE</th>
+                    <th class="encabezado-azul">DOSIS</th>
+                    <th class="encabezado-azul">EDAD Y FRECUENCIA</th>
+                    <th class="encabezado-azul">FECHA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </main>
 
 </body>
 </html>

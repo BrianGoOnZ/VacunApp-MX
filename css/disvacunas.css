@@ -1,52 +1,53 @@
-/* Espaciado para el contenedor */
-.contenido-tabla {
-    display: flex; /* Flexbox */
-    justify-content: center; /* Centrado horizontal */
-    align-items: flex-start; /* Alineación al tope */
-    padding: 50px; /* Espaciado interno */
-    gap: 30px; /* Espacio entre botones y tabla */
-    background-color: #f0f2f5; /* Fondo gris claro */
+/* Layout */
+.contenedor-principal {
+    display: flex;
+    padding: 40px;
+    gap: 50px;
+    align-items: flex-start;
+    background-color: #f8f9fa;
 }
 
-/* Propiedades de Borde y Espaciado para la tabla */
-.tabla-vacunas {
-    width: 80%; /* Ancho */
-    border-collapse: collapse; /* Quita espacios entre bordes */
-    background-color: #ffffff; /* Fondo  */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Fondo para los encabezados */
-.tabla-vacunas th {
-    background-color: #6d96c8; 
-    color: #000000; /* Texto  */
-    font-family: Arial, sans-serif; /* Fuente */
-    font-size: 16px; 
-    font-weight: bold; /* Texto negrita */
-    border: 2px solid #333333; /* Borde sólido */
-    padding: 15px;
+/*  Botones  */
+.btn-azul {
+    background-color: #0056ff;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/*Estructura de filas */
-.tabla-vacunas td {
-    border: 1px solid #333333;
-    padding: 20px;
+/* Tabla */
+.tabla-diseno {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.tabla-diseno th, .tabla-diseno td {
+    border: 1.5px solid #444; /* Bordes  */
     height: 50px;
     text-align: center;
 }
 
-/* Fondo para la primera columna */
-.columna-azul {
+/* C encabezados  */
+.encabezado-azul {
+    background-color: #6d96c8;
+    color: #111;
+    font-size: 13px;
+}
+
+/* primera columna  */
+.celda-lateral {
     background-color: #94bad9;
-}
-
-/*botones */
-.inicio-login {
-    transition: all 0.3s ease; /* Transición  */
-    border-radius: 12px; /* Borde redondeado */
-    cursor: pointer;
-}
-
-.inicio-login:hover {
-    opacity: 0.8; /* Opacidad  */
-    transform: scale(1.05); /* Un pequeño efecto de aumento */
+    width: 150px;
 }
