@@ -1,0 +1,38 @@
+.container-fluid {
+    background-color: #000291;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    color: #f2f2f2;
+    font-size: 2em;
+}
+.mx {
+    color: #4ABEEF;
+}
+.nav-link {
+    color: #f2f2f2;
+}
+
+/* Inicia Main */
+.bienvenida {
+    margin-top: .3em;
+    color: #000291;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+.container {
+    margin-top: 1.5em;
+}
+
+.col-sm-8 {
+    background-color: aqua;
+}
+.imagen-vacunacion {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+}
