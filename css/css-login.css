@@ -1,0 +1,18 @@
+/* NAb */
+
+.container-fluid {
+    background-color: #000291;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    color: #f2f2f2;
+    font-size: 2em;
+}
+.mx {
+    color: #4ABEEF;
+}
+.nav-link {
+    color: #f2f2f2;
+}
