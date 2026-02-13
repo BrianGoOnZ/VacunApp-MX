@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>VacunApp - Mis Vacunas</title>
-    <link rel="stylesheet" href="css/style.css"> 
-    <link rel="stylesheet" href="css/disvacunas.css"> </head>
-<body class="pantalla-vacunas">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VacunApp - Mis Vacunas (BS3)</title>
 
-    <nav class="navbar">
-        <div class="navbar_menu">
-            <a href="index.html" class="menu">Inicio</a>
-            <a href="vacunas.html" class="menu">Vacunas</a>
-            <a href="#" class="menu">Calendario</a>
-            <a href="#" class="menu">Centros</a>
-        </div>
-    </nav>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+      <div class="logo">
+        VacunApp <span class="mx">MX</span>
+      </div>
+      <div>
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Vacunas</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Calendario</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Escanear</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Centros</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <main class="contenedor-principal">
-        <div class="sidebar">
-            <button class="btn-azul">+ Añadir vacuna</button>
-            <button class="btn-azul">+ Recordatorio</button>
-        </div>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-3 sidebar">
+                <button class="btn btn-primary btn-block btn-azul">+ Añadir vacuna</button>
+                <button class="btn btn-primary btn-block btn-azul">+ Recordatorio</button>
+            </div>
 
-        <table class="tabla-diseno">
-            <thead>
-                <tr>
-                    <th class="encabezado-azul">Vacuna</th>
-                    <th class="encabezado-azul">ENFERMEDAD QUE PREVIENE</th>
-                    <th class="encabezado-azul">DOSIS</th>
-                    <th class="encabezado-azul">EDAD Y FRECUENCIA</th>
-                    <th class="encabezado-azul">FECHA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td class="celda-lateral"></td><td></td><td></td><td></td><td></td></tr>
-            </tbody>
-        </table>
-    </main>
+            <div class="col-md-9">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="encabezado-azul">
+                                <th>Vacuna</th>
+                                <th>ENFERMEDAD QUE PREVIENE</th>
+                                <th>DOSIS</th>
+                                <th>EDAD Y FRECUENCIA</th>
+                                <th>FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
+        </div> </div> <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
