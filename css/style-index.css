@@ -28,11 +28,58 @@
 }
 
 .col-sm-8 {
-    background-color: aqua;
+    background-color: #f9f9f9;
+    border-radius: 1em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    padding: .5em;
+    text-align: center;
 }
 .imagen-vacunacion {
     width: 100%;
     max-width: 400px;
     height: auto;
-    border-radius: 15px;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 1em;
+}
+.titulo-campana{
+    font-size: 1.5em;
+    text-align: center;
+    color: #000291;
+}
+
+.col-sm-4{
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    margin: 0 auto;
+    justify-content: center;
+}
+.btn-iniciarsesion{
+    text-decoration: none;
+    background-color: #000291;
+    color: #f2f2f2;
+    padding: 1em 2em;
+    border-radius: .5em;
+    font-size: large;
+    font-weight: bold;
+    display: block;
+    margin: 1.5em;
+}
+.btn-iniciarsesion:hover{
+    background-color: #ffffff;
+    color: #000291;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.imagen-chica {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 1em;
 }
