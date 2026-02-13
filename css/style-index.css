@@ -1,3 +1,5 @@
+/* NAb */
+
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -74,12 +76,27 @@
     color: #000291;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
+.col-sm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    background-color: #f2f2f2;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    border-radius: 1em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    /* margin: 0 auto; */
+    /* justify-content: center; */
+}
 .imagen-chica {
     width: 100%;
-    max-width: 200px;
+    max-width: 150px;
     height: auto;
     margin: 0 auto;
     padding: 1em;
     border-radius: 1em;
+}
+.titulo-chica {
+    font-size: 1em;
 }
