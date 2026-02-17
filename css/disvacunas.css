@@ -61,19 +61,3 @@
     border-color: #000291;
     box-shadow: none;
 }
-
-/* --- 3. Navbar Simple --- */
-.navbar_menu {
-    display: flex;
-    gap: 20px;
-}
-
-.menu {
-    text-decoration: none;
-    color: #f2f2f2;
-    font-weight: bold;
-}
-
-.menu.active {
-    color: #4ABEEF;
-}
