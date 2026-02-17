@@ -9,67 +9,74 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
         crossorigin="anonymous">
   <link rel="stylesheet" href="css/style-index.css">
-  <link rel="stylesheet" href="css/centros.css">
 </head>
 <body>
   <header>
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="logo">
         VacunApp <span class="mx">MX</span>
       </div>
-      <div>
-        <ul class="nav nav-tabs">
+      <nav>
+        <ul class="nav nav-tabs border-0">
           <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
           <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
           <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
           <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
           <li class="nav-item"><a href="centros.html" class="nav-link active">Centros</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
   </header>
 
   <main>
-    <div class="bienvenida">CENTROS CERCANOS</div>
-
-    <div class="container">
+    <div class="bienvenida text-center">CENTROS CERCANOS</div>
+    
+    <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 col-lg-7">
           
-          <div class="card-info card-centro-horizontal">
+          <div class="card-info p-4 mb-4 shadow-sm border-0 rounded-4">
             <div class="row align-items-center">
-              <div class="col-sm-4 text-center">
-                <img src="img-medios-VApp/secre-salud.webp" 
-                     alt="Hospital General 450" 
-                     class="img-centro-lista">
+              <div class="col-2 text-center">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000291" class="bi bi-hospital" viewBox="0 0 16 16">
+                    <path d="M8.5 5.034v1.1l.953-.55.5.867L9 6l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 6l-.953-.55.5-.866.953.55v-1.1h1ZM7 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                    <path d="M5 1a1 1 0 0 0-1 1v14H1a1 1 0 0 0-1 1v1h16v-1a1 1 0 0 0-1-1h-3V2a1 1 0 0 0-1-1H5ZM4 14V2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v12h1v1H3v-1h1Z"/>
+                  </svg>
+                </div>
               </div>
-              <div class="col-sm-5 info-centro-texto">
-                <h3 class="titulo-campana text-start">Hospital General 450</h3>
-                <p class="detalles">Av. Universidad S/N, Durango, Dgo.</p>
-                <p class="detalles">Horario: 08:00 AM - 08:00 PM</p>
+              <div class="col-7">
+                <h3 class="titulo-campana m-0" style="font-size: 1.25rem;">Hospital General 450</h3>
+                <p class="text-muted small mb-1">Av. Universidad S/N, Durango, Dgo.</p>
+                <p class="text-muted small m-0">Horario: 08:00 AM - 08:00 PM</p>
               </div>
-              <div class="col-sm-3 text-center">
-                <span class="badge-vacunas">Vacunas Disponibles</span>
-                <a href="#" class="ver-mapa-link">Ver en Mapa</a>
+              <div class="col-3 text-end">
+                <span class="badge rounded-pill bg-primary px-3 py-2 mb-2 d-inline-block" style="font-size: 0.7rem;">Vacunas Disponibles</span>
+                <br>
+                <a href="#" class="text-decoration-underline fw-bold small" style="color: #000291;">Ver en Mapa</a>
               </div>
             </div>
           </div>
 
-          <div class="card-info card-centro-horizontal">
+          <div class="card-info p-4 mb-4 shadow-sm border-0 rounded-4">
             <div class="row align-items-center">
-              <div class="col-sm-4 text-center">
-                <img src="img-medios-VApp/clinica-dgo.webp" 
-                     alt="Clínica IMSS No. 1" 
-                     class="img-centro-lista">
+              <div class="col-2 text-center">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#000291" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                  </svg>
+                </div>
               </div>
-              <div class="col-sm-5 info-centro-texto">
-                <h3 class="titulo-campana text-start">Clínica IMSS No. 1</h3>
-                <p class="detalles">Predio Canoas, Durango, Dgo.</p>
-                <p class="detalles">Horario: 24 Horas</p>
+              <div class="col-7">
+                <h3 class="titulo-campana m-0" style="font-size: 1.25rem;">Clínica IMSS No. 1</h3>
+                <p class="text-muted small mb-1">Predio Canoas, Durango, Dgo.</p>
+                <p class="text-muted small m-0">Horario: 24 Horas</p>
               </div>
-              <div class="col-sm-3 text-center">
-                <span class="badge-vacunas">Vacunas Disponibles</span>
-                <a href="#" class="ver-mapa-link">Ver en Mapa</a>
+              <div class="col-3 text-end">
+                <span class="badge rounded-pill bg-primary px-3 py-2 mb-2 d-inline-block" style="font-size: 0.7rem;">Vacunas Disponibles</span>
+                <br>
+                <a href="#" class="text-decoration-underline fw-bold small" style="color: #000291;">Ver en Mapa</a>
               </div>
             </div>
           </div>
