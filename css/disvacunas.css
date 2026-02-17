@@ -1,17 +1,18 @@
-/* Ajustes para la tabla  */
+/* --- 1. Estilos de la Tabla --- */
 .tabla-contenedor {
-    padding: 0 !important; /* Para que la tabla llegue al borde de la tarjeta */
+    padding: 0 !important;
     overflow: hidden;
     border: none;
 }
+
 .tabla-vapp {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
 }
-/* Encabezado de la tabla  */
+
 .tabla-vapp thead th {
-    background-color: #7294c0;
+    background-color: #7294c0; /* Azul grisáceo / acero */
     color: #000291;
     text-align: center;
     padding: 1.2em .5em;
@@ -20,31 +21,59 @@
     font-weight: bold;
     text-transform: uppercase;
 }
-/* Celdas de la tabla */
+
 .tabla-vapp td {
     border: 1px solid #000291;
     height: 45px;
-    transition: background-color 0.3s ease;
 }
-.tabla-vapp tbody tr:hover td {
-    background-color: #f2f2f2;
-}
-/* La columna lateral  */
+
+/* Columna lateral azul claro de la imagen */
 .col-azul-claro {
     background-color: #9dbcd4 !important;
     width: 60px;
 }
-/* botones  */
-.sidebar-botones .btn-iniciarsesion {
-    margin: 1em auto;
-    width: 90%;
+
+/* --- 2. Ajustes del Modal para que coincida con tus tarjetas --- */
+.modal-vapp {
+    padding: 0 !important; 
+    border: none;
 }
-/* fondo blanco */
-.nav-tabs {
-    border-bottom: none !important;
+
+.modal-body {
+    padding: 2em;
+    text-align: left;
 }
-.nav-link.active {
-    background-color: #4ABEEF !important;
-    color: #000291 !important;
-    border: none !important;
+
+.modal-body label {
+    color: #000291;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilo de los cuadros de texto del formulario */
+.form-control {
+    border: 2px solid #9dbcd4;
+    border-radius: 0.5em;
+    height: 40px;
+}
+
+.form-control:focus {
+    border-color: #000291;
+    box-shadow: none;
+}
+
+/* --- 3. Navbar Simple --- */
+.navbar_menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu {
+    text-decoration: none;
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+.menu.active {
+    color: #4ABEEF;
 }
