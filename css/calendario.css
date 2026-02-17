@@ -1,4 +1,4 @@
- /* Navbar */
+/* Navbar */
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -19,67 +19,88 @@
     color: #f2f2f2;
 }
 
- 
- body {
-    background-color: #f4f6fb;
+/* --- 1. CONFIGURACIÓN BASE --- */
+body {
+    background-color: #f4f6fb; /* Fondo claro institucional */
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar-custom {
-    background-color: #0b2a63; 
-    padding: 15px 40px;
-}
-.logo {
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #4ab0ff;
-}
+/* --- 2. TÍTULOS Y SECCIONES --- */
 .titulo {
-    color: #1e3a8a;
-    font-weight: bold;
+    color: #000291 !important; /* Azul Rey */
+    font-weight: bold !important;
+    text-align: center;
 }
 
+/* Adorno debajo del título */
+.titulo::after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 4px;
+    background-color: #4ABEEF; /* Azul Celeste */
+    margin: 0.5em auto 0;
+    border-radius: 2px;
+}
+
+/* --- 3. BOTONES PERSONALIZADOS --- */
 .btn-azul {
-   padding: 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(to right, #0b2a63, #1f4fa3);
-    color: white;
+    /* Gradiente institucional de VacunApp MX */
+    background: linear-gradient(to right, #000291, #1f4fa3) !important;
+    color: white !important;
     font-weight: bold;
+    transition: transform 0.2s ease;
 }
 
-.btn-azul:hover{
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(to right, #0b2a63, #1f4fa3);
-    color: white;
-    font-weight: bold;}
-
-.dias {
-    background-color: #1f3fab;
-    color: #1e3a8a;
+.btn-azul:hover {
+    transform: scale(1.03); /* Efecto visual de interacción */
+    color: white !important;
+    background: linear-gradient(to right, #1f4fa3, #000291) !important;
 }
 
+/* --- 4. TABLA DEL CALENDARIO --- */
 .calendario-tabla td {
     height: 70px;
     vertical-align: middle;
+    font-weight: bold;
 }
 
-.encabezado{
-    background-color: #1e3a8a;
-    color: white
+.encabezado {
+    background-color: #000291 !important; /* Azul Rey */
+    color: white !important;
 }
 
-.dia{
-    background-color: #0b2a63;
-    color: white
+.dia {
+    background-color: #000291 !important;
+    color: white !important;
 }
 
 .dia-claro {
-    background-color: #93c5fd;
+    background-color: #93c5fd !important; /* Azul claro para contraste */
+    color: #000291 !important;
+}
+
+.dia-vacio {
+    background-color: #e9ecef; /* Espacio neutro para completar la semana */
+}
+
+/* --- 5. MODALES --- */
+.bg-vapp {
+    background-color: #000291 !important;
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.form-label {
+    color: #000291;
+    font-weight: bold;
 }
