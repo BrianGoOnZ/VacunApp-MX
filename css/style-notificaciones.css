@@ -1,9 +1,3 @@
-/* ==========================================================================
-   ESTILOS DE NOTIFICACIONES - VACUNAPP MX
-   ========================================================================== */
-
-/* --- 1. CONFIGURACIÓN BASE --- */
-
 /* Navbar */
 .container-fluid {
     background-color: #000291;
@@ -24,73 +18,49 @@
 .nav-link {
     color: #f2f2f2;
 }
-body {
-    background-color: #f4f6fb; /* Fondo claro institucional */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+
+/* --- 3. TÍTULOS Y CABECERAS --- */
+.titulo-notificaciones {
+    margin-bottom: 3rem;
 }
 
-/* --- 2. TÍTULOS Y CABECERAS --- */
 .titulo-notificaciones h1 {
-    color: #000291; /* Azul Rey institucional */
-    font-weight: bold;
-    text-transform: capitalize;
+    color: #000291; 
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Adorno decorativo debajo del título */
 .titulo-notificaciones::after {
     content: "";
     display: block;
-    width: 180px;
-    height: 4px;
-    background-color: #4ABEEF; /* Azul Celeste institucional */
-    margin: 0.5em auto 0;
-    border-radius: 2px;
+    width: 100px;
+    height: 5px;
+    background-color: #4ABEEF; 
+    margin: 10px auto 0;
+    border-radius: 10px;
 }
 
-/* --- 3. TARJETAS DE NOTIFICACIÓN (CARDS) --- */
+/* --- 4. TARJETAS DE NOTIFICACIÓN (CARDS) --- */
 .card-notificacion {
     background-color: #ffffff;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: none;
+    transition: transform 0.2s ease;
+}
+
+.card-notificacion:hover {
+    transform: translateY(-3px); /* Efecto de levante */
 }
 
 /* Encabezado de la tarjeta */
 .card-header-vapp {
-    background-color: #dce1f2; /* Azul lavanda suave del diseño */
-    padding: 12px 20px;
-    color: #000291; /* Texto en Azul Rey para contraste */
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-/* Contenedor interno del encabezado */
-.card-header-vapp span {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Cuerpo de la notificación (Área blanca) */
-.card-body-vapp {
-    height: 60px; /* Espacio para el contenido */
-    background-color: #ffffff;
-}
-
-/* --- 4. BOTONES Y ACCIONES --- */
-.btn-close-vapp {
-    background: none;
-    border: none;
-    color: #000291; /* Azul Rey */
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.btn-close-vapp:hover {
-    color: #4ABEEF; /* Cambio a Celeste en interacción */
-}
+    background-color: #dce1f2;
+    padding: 15px 25px;
+    color: #000291; 
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1

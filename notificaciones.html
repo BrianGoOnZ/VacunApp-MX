@@ -8,50 +8,58 @@
     <link rel="stylesheet" href="css/style-notificaciones.css">
 </head>
 <body>
-    <header class="vapp-navbar-main">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="logo">
-                VacunApp <span class="mx">MX</span>
-            </div>
-            <nav>
-                <ul class="nav nav-tabs border-0">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
-                    <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
-                    <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
-                    <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section class="container text-center py-4">
-            <div class="titulo-notificaciones mb-5">
-                <h1 class="d-inline-block ms-2">Notificaciones</h1>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card-notificacion mb-4">
-                        <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                            <span>Recordatorios</span>
-                            <button class="btn-close-vapp">X</button>
-                        </div>
+  <header>
+    <div class="container-fluid">
+      <div class="logo">
+        VacunApp <span class="mx">MX</span>
+      </div>
+      <div>
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
+          <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
+          <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
+          <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+    <main class="container py-5">
+        <section class="titulo-notificaciones text-center">
+            <h1>Notificaciones</h1>
+        </section>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-7">
+                <article class="card-notificacion mb-4">
+                    <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                        <span>Recordatorios</span>
+                        <button class="btn-close-vapp">✕</button>
                     </div>
-                </div>
-                <div class="card-notificacion mb-4">
+                    <div class="card-body-vapp p-3">
+                        <p class="m-0 text-muted">No tienes recordatorios pendientes.</p>
+                    </div>
+                </article>
+                <article class="card-notificacion mb-4">
                     <div class="card-header-vapp d-flex justify-content-between align-items-center">
                         <span>Mensajes</span>
-                        <button class="btn-close-vapp">X</button>
+                        <button class="btn-close-vapp">✕</button>
                     </div>
-                </div>
-                <div class="card-notificacion mb-4">
-                    <div class="card-header-vapp d-flex justify-content-between align-items-center">                            <span>Información Educativa</span>
-                        <button class="btn-close-vapp">X</button>
+                    <div class="card-body-vapp p-3">
+                        <p class="m-0 text-muted">Tienes un mensaje del sector salud.</p>
                     </div>
-                </div>
+                </article>
+                <article class="card-notificacion mb-4">
+                    <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                        <span>Información Educativa</span>
+                        <button class="btn-close-vapp">✕</button>
+                    </div>
+                    <div class="card-body-vapp p-3">
+                        <p class="m-0 text-muted">Nueva campaña de vacunación disponible.</p>
+                    </div>
+                </article>
             </div>
-        </section>
+        </div>
     </main>
 </body>
 </html>

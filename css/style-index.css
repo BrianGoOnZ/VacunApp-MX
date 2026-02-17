@@ -34,7 +34,7 @@
 .bienvenida::after {
     content: "";
     display: block;
-    width: 200px; /* ajustado para que no sea tan largo */
+    width: 200px;
     height: 4px;
     background-color: #4ABEEF;
     margin: 0.5em auto 0;
@@ -49,7 +49,6 @@
     margin-top: 1.5em;
 }
 
-/* Botones login/registro */
 .btn-iniciarsesion {
     text-decoration: none;
     background-color: #000291;
