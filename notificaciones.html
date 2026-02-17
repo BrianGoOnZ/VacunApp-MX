@@ -8,32 +8,25 @@
     <link rel="stylesheet" href="css/style-notificaciones.css">
 </head>
 <body>
-  <header>
-    <div class="container-fluid">
-      <div class="logo">
-        VacunApp <span class="mx">MX</span>
-      </div>
-      <div>
-        <ul class="nav nav-tabs">
-          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
-          <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
-          <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
-          <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
+    <header class="vapp-navbar-main">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="logo">
+                VacunApp <span class="mx">MX</span>
+            </div>
+            <nav>
+                <ul class="nav nav-tabs border-0">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
+                    <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
+                    <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
+                    <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main class="d-flex">
-        <aside class="vapp-sidebar d-flex flex-column align-items-center py-4">
-            <div class="sidebar-icon mb-5"><img src="img/trash.png" alt="Eliminar"></div>
-            <div class="sidebar-icon mb-5"><img src="img/plus.png" alt="Agregar"></div>
-            <div class="sidebar-icon mb-5"><img src="img/check.png" alt="Check"></div>
-            <div class="sidebar-icon mt-auto"><img src="img/v-logo.png" alt="Chat IA"></div>
-        </aside>
-
+    <main>
         <section class="container text-center py-4">
             <div class="titulo-notificaciones mb-5">
                 <h1 class="d-inline-block ms-2">Notificaciones</h1>
@@ -43,30 +36,31 @@
                 <div class="col-md-8">
                     <div class="card-notificacion mb-4">
                         <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                            <span><img src="img/calendar.png" width="25"> Recordatorios</span>
+                            <span>Recordatorios</span>
                             <button class="btn-close-vapp">X</button>
                         </div>
-                        <div class="card-body-vapp"></div>
+                        <div class="card-body-vapp">
+                            </div>
                     </div>
 
                     <div class="card-notificacion mb-4">
                         <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                            <span><img src="img/message.png" width="25"> Mensajes</span>
+                            <span>Mensajes</span>
                             <button class="btn-close-vapp">X</button>
                         </div>
-                        <div class="card-body-vapp"></div>
+                        <div class="card-body-vapp">
+                            </div>
                     </div>
 
                     <div class="card-notificacion mb-4">
                         <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                            <span><img src="img/book.png" width="25"> Informacion Educativa</span>
+                            <span>Información Educativa</span>
                             <button class="btn-close-vapp">X</button>
                         </div>
-                        <div class="card-body-vapp"></div>
+                        <div class="card-body-vapp">
+                            </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-</body>
-</html>
