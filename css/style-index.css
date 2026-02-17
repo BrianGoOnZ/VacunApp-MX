@@ -1,5 +1,4 @@
-/* NAb */
-
+/* Navbar */
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -17,50 +16,38 @@
     color: #f2f2f2;
 }
 
-/* Inicia Main */
+/* Bienvenida */
 .bienvenida {
     margin-top: .3em;
+    font-size: 2em;
     color: #000291;
-    font-size: 1.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     text-align: center;
+    position: relative;
+    margin-bottom: 1em;
+}
+.bienvenida::after {
+    content: "";
+    display: block;
+    width: 200px; /* ajustado para que no sea tan largo */
+    height: 4px;
+    background-color: #4ABEEF;
+    margin: 0.5em auto 0;
+    border-radius: 2px;
+}
+.bienvenida:hover {
+    color: #4ABEEF;
+    transition: color 0.3s ease;
 }
 
 .container {
     margin-top: 1.5em;
 }
 
-.col-sm-8 {
-    background-color: #f9f9f9;
-    border-radius: 1em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    padding: .5em;
-    text-align: center;
-}
-.imagen-vacunacion {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin: 0 auto;
-    padding: 1em;
-    border-radius: 1em;
-}
-.titulo-campana{
-    font-size: 1.5em;
-    text-align: center;
-    color: #000291;
-}
-
-.col-sm-4{
-    background-color: #f2f2f2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 1em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    margin: 0 auto;
-    justify-content: center;
-}
-.btn-iniciarsesion{
+/* Botones login/registro */
+.btn-iniciarsesion {
     text-decoration: none;
     background-color: #000291;
     color: #f2f2f2;
@@ -70,33 +57,154 @@
     font-weight: bold;
     display: block;
     margin: 1.5em;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
 }
-.btn-iniciarsesion:hover{
+.btn-iniciarsesion:hover {
     background-color: #ffffff;
     color: #000291;
+    border: 2px solid #000291;
+}
+
+/* Tarjetas unificadas (superiores y educativas) */
+.card-info,
+.card-educativa {
+    background-color: #ffffff;
+    border-radius: 1em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 1em;
+    text-align: center;
+    margin: 1em 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-info:hover,
+.card-educativa:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Tamaños de imágenes */
+.imagen-vacunacion {
+    width: 100%;
+    max-width: 300px; /* reducido */
+    height: auto;
+    margin: 1em auto;
+    border-radius: .5em;
+    transition: transform 0.3s ease;
+}
+.imagen-chica,
+.imagen-card {
+    width: 100%;
+    max-width: 200px; /* reducido */
+    height: auto;
+    margin: 1em auto;
+    border-radius: .5em;
+    transition: transform 0.3s ease;
+}
+
+.card-info:hover .imagen-vacunacion,
+.card-info:hover .imagen-chica,
+.card-educativa:hover .imagen-card {
+    transform: scale(1.05);
+}
+
+.titulo-campana,
+.texto-card {
+    font-size: 1em;
+    color: #000291;
+    font-weight: bold;
+    margin-top: .5em;
+}
+
+/* Encabezados de tarjetas educativas */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000291;
+    color: #f2f2f2;
+    padding: .5em;
+    border-radius: .5em .5em 0 0;
+    font-weight: bold;
+}
+.btn-cerrar {
+    background: none;
+    border: none;
+    color: #f2f2f2;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.btn-cerrar:hover {
+    color: #4ABEEF;
+}
+
+/* Sección educativa */
+.info-educativa {
+    margin: 2em auto;
+    padding: 1em;
+    background-color: #f9f9f9;
+    border-radius: 1em;
+    text-align: center;
+}
+.titulo-seccion {
+    font-size: 2em;
+    color: #000291;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1em;
+    position: relative;
+}
+.titulo-seccion::after {
+    content: "";
+    display: block;
+    width: 200px; /* ajustado para que no sea tan largo */
+    height: 4px;
+    background-color: #4ABEEF;
+    margin: 0.5em auto 0;
+    border-radius: 2px;
+}
+.titulo-seccion:hover {
+    color: #4ABEEF;
+    transition: color 0.3s ease;
+}
+
+/* Caja especial IA */
+.ia-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contenido-ia {
+    margin-top: 1em;
+}
+.btn-ia {
+    background-color: #4ABEEF;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    font-size: .9em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.col-sm {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    background-color: #f2f2f2;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    border-radius: 1em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    /* margin: 0 auto; */
-    /* justify-content: center; */
+.btn-ia:hover {
+    background-color: #000291;
+    transform: scale(1.05);
 }
-.imagen-chica {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    margin: 0 auto;
-    padding: 1em;
-    border-radius: 1em;
-}
-.titulo-chica {
-    font-size: 1em;
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .contenedor-cards .col-sm,
+    .row .col-sm,
+    .row .col-sm-8,
+    .row .col-sm-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
