@@ -88,7 +88,7 @@
 /* Tamaños de imágenes */
 .imagen-vacunacion {
     width: 100%;
-    max-width: 300px; /* reducido */
+    max-width: 300px;
     height: auto;
     margin: 1em auto;
     border-radius: .5em;
@@ -97,7 +97,7 @@
 .imagen-chica,
 .imagen-card {
     width: 100%;
-    max-width: 200px; /* reducido */
+    max-width: 200px;
     height: auto;
     margin: 1em auto;
     border-radius: .5em;
