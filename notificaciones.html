@@ -1,46 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VacunApp-Notificaciones</title>
-    <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/prueba.css">
+    <title>VacunApp MX - Notificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-notificaciones.css">
 </head>
-
 <body>
+  <header>
+    <div class="container-fluid">
+      <div class="logo">
+        VacunApp <span class="mx">MX</span>
+      </div>
+      <div>
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a href="#" class="nav-link active">Inicio</a></li>
+          <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
+          <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
+          <li class="nav-item"><a href="notificaciones.html" class="nav-link">Notificaciones</a></li>
+          <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-    <header class="header">
-        <div class="logo">
-            VacunApp MX
-        </div>
+    <main class="d-flex">
+        <aside class="vapp-sidebar d-flex flex-column align-items-center py-4">
+            <div class="sidebar-icon mb-5"><img src="img/trash.png" alt="Eliminar"></div>
+            <div class="sidebar-icon mb-5"><img src="img/plus.png" alt="Agregar"></div>
+            <div class="sidebar-icon mb-5"><img src="img/check.png" alt="Check"></div>
+            <div class="sidebar-icon mt-auto"><img src="img/v-logo.png" alt="Chat IA"></div>
+        </aside>
 
-        <nav class="navbar">
-            <a href="#" class="btn-nav">Inicio</a>
-            <a href="#" class="btn-nav">Vacunas</a>
-            <a href="#" class="btn-nav">Calendario</a>
-            <a href="#" class="btn-nav">Escaner</a>
-            <a href="#" class="btn-nav">Centros</a>
-        </nav>
-    </header>
+        <section class="container text-center py-4">
+            <div class="titulo-notificaciones mb-5">
+                <h1 class="d-inline-block ms-2">Notificaciones</h1>
+            </div>
 
-    <main class="main">
-        <div>
-            <h1>Notificaciones</h1>
-        </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-notificacion mb-4">
+                        <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                            <span><img src="img/calendar.png" width="25"> Recordatorios</span>
+                            <button class="btn-close-vapp">X</button>
+                        </div>
+                        <div class="card-body-vapp"></div>
+                    </div>
 
-        <div>
-            <h2>Recordatorios</h2>
-            <h2>Mensajes</h2>
-            <h2>Información Educativa</h2>
-        </div>
+                    <div class="card-notificacion mb-4">
+                        <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                            <span><img src="img/message.png" width="25"> Mensajes</span>
+                            <button class="btn-close-vapp">X</button>
+                        </div>
+                        <div class="card-body-vapp"></div>
+                    </div>
 
+                    <div class="card-notificacion mb-4">
+                        <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                            <span><img src="img/book.png" width="25"> Informacion Educativa</span>
+                            <button class="btn-close-vapp">X</button>
+                        </div>
+                        <div class="card-body-vapp"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-
-    <footer  class="footer">
-        <h1>Este es el footer</h1>
-    </footer>
-    
 </body>
-
 </html>

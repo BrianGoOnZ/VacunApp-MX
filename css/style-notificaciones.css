@@ -1,0 +1,86 @@
+/* Navbar */
+.container-fluid {
+    background-color: #000291;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: auto;
+}
+.logo {
+    color: #f2f2f2;
+    font-size: 2em;
+}
+.mx {
+    color: #4ABEEF;
+}
+.nav-link {
+    color: #f2f2f2;
+}
+
+/* Sidebar */
+.vapp-sidebar {
+    width: 80px;
+    background-color: #f2f2f2;
+    min-height: calc(100vh - 70px);
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-icon img {
+    width: 30px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar-icon img:hover {
+    opacity: 1;
+}
+
+/* Título */
+.titulo-notificaciones h1 {
+    color: #000291;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+/* Tarjetas */
+.card-notificacion {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-header-vapp {
+    background-color: #dce1f2; /* Azul lavanda suave de tu imagen */
+    padding: 10px 20px;
+    color: #555;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.card-header-vapp span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-body-vapp {
+    height: 60px; /* Espacio blanco de la notificación */
+}
+
+.btn-close-vapp {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Navbar unificado */
+.vapp-navbar-main {
+    background-color: #000291 !important;
+    padding: 10px 0;
+}
