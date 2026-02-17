@@ -1,0 +1,63 @@
+ body {
+    background-color: #f4f6fb;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-custom {
+    background-color: #0b2a63; 
+    padding: 15px 40px;
+}
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #4ab0ff;
+}
+.titulo {
+    color: #1e3a8a;
+    font-weight: bold;
+}
+
+.btn-azul {
+   padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #0b2a63, #1f4fa3);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-azul:hover{
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #0b2a63, #1f4fa3);
+    color: white;
+    font-weight: bold;}
+
+.dias {
+    background-color: #1f3fab;
+    color: #1e3a8a;
+}
+
+.calendario-tabla td {
+    height: 70px;
+    vertical-align: middle;
+}
+
+.encabezado{
+    background-color: #1e3a8a;
+    color: white
+}
+
+.dia{
+    background-color: #0b2a63;
+    color: white
+}
+
+.dia-claro {
+    background-color: #93c5fd;
+}
