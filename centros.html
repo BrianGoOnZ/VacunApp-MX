@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>VacunApp MX - Centros</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style-index.css">
-    <link rel="stylesheet" href="css/centros.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VacunApp MX - Centros</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style-index.css">
+  <link rel="stylesheet" href="css/centros.css">
 </head>
-<body class="bg-vapp">
+<body>
+  <header>
+    <div class="container-fluid">
+      <div class="logo">
+        VacunApp <span class="mx">MX</span>
+      </div>
+      <div>
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
+          <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
+          <li class="nav-item"><a href="centros.html" class="nav-link active">Centros</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-    <header class="header-vapp">
-        </header>
+  <main>
+    <div class="bienvenida">CENTROS CERCANOS</div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <h1 class="bienvenida-centros">CENTROS CERCANOS</h1>
-                <div class="linea-azul"></div>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          
+          <div class="card-info card-centro-horizontal">
+            <div class="row align-items-center">
+              <div class="col-sm-4 text-center">
+                <img src="img-medios-VApp/secre-salud.webp" 
+                     alt="Hospital General 450" 
+                     class="img-centro-lista">
+              </div>
+              <div class="col-sm-5 info-centro-texto">
+                <h3 class="titulo-campana text-start">Hospital General 450</h3>
+                <p class="detalles">Av. Universidad S/N, Durango, Dgo.</p>
+                <p class="detalles">Horario: 08:00 AM - 08:00 PM</p>
+              </div>
+              <div class="col-sm-3 text-center">
+                <span class="badge-vacunas">Vacunas Disponibles</span>
+                <a href="#" class="ver-mapa-link">Ver en Mapa</a>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                
-                <div class="card-centro-vapp">
-                    <div class="card-contenido">
-                        <div class="centro-img-container">
-                            <img src="img-medios-VApp/secre-salud.webp" alt="Hospital">
-                        </div>
-                        <div class="centro-texto">
-                            <h3>Hospital General 450</h3>
-                            <p>Av. Universidad S/N, Durango, Dgo.</p>
-                            <p>Horario: 08:00 AM - 08:00 PM</p>
-                        </div>
-                        <div class="centro-acciones">
-                            <span class="badge-vacunas">Vacunas Disponibles</span>
-                            <a href="#" class="link-mapa">Ver en Mapa</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-centro-vapp">
-                    <div class="card-contenido">
-                        <div class="centro-img-container">
-                            <img src="img-medios-VApp/clinica-dgo.webp" alt="IMSS">
-                        </div>
-                        <div class="centro-texto">
-                            <h3>Clínica IMSS No. 1</h3>
-                            <p>Predio Canoas, Durango, Dgo.</p>
-                            <p>Horario: 24 Horas</p>
-                        </div>
-                        <div class="centro-acciones">
-                            <span class="badge-vacunas">Vacunas Disponibles</span>
-                            <a href="#" class="link-mapa">Ver en Mapa</a>
-                        </div>
-                    </div>
-                </div>
-
+          <div class="card-info card-centro-horizontal">
+            <div class="row align-items-center">
+              <div class="col-sm-4 text-center">
+                <img src="img-medios-VApp/clinica-dgo.webp" 
+                     alt="Clínica IMSS No. 1" 
+                     class="img-centro-lista">
+              </div>
+              <div class="col-sm-5 info-centro-texto">
+                <h3 class="titulo-campana text-start">Clínica IMSS No. 1</h3>
+                <p class="detalles">Predio Canoas, Durango, Dgo.</p>
+                <p class="detalles">Horario: 24 Horas</p>
+              </div>
+              <div class="col-sm-3 text-center">
+                <span class="badge-vacunas">Vacunas Disponibles</span>
+                <a href="#" class="ver-mapa-link">Ver en Mapa</a>
+              </div>
             </div>
+          </div>
+
         </div>
+      </div>
     </div>
+  </main>
 </body>
 </html>
