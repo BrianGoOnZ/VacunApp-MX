@@ -1,11 +1,11 @@
-  body {
+ body {
     background-color: #f4f6fb;
     font-family: Arial, sans-serif;
 }
 
-/* NAVBAR */
+
 .navbar-custom {
-    background-color: #0b2a63;
+    background-color: #0b2a63; 
     padding: 15px 40px;
 }
 
@@ -28,12 +28,12 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-/* TITULO */
+/* TÍTULO */
 h2 {
     color: #0b2a63;
 }
 
-/* BOTÓN */
+/* BOTONES PERSONALIZADOS (NO usar btn-primary de bootstrap) */
 .btn-primary-custom {
     padding: 10px;
     border: none;
@@ -43,22 +43,15 @@ h2 {
     font-weight: bold;
 }
 
-.btn-primary-custom:hover {
-    opacity: 0.9;
-}
-
-/* LINK */
-.link-custom {
+.btn-secondary-custom {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #0b2a63;
+    background: white;
     color: #0b2a63;
-    text-decoration: none;
-    font-size: 14px;
 }
 
-.link-custom:hover {
-    text-decoration: underline;
-}
-
-/* INPUT FOCUS */
+/* INPUTS */
 .form-control:focus {
     border-color: #0b2a63;
     box-shadow: 0 0 5px rgba(11,42,99,0.3);
