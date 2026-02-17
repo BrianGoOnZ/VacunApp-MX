@@ -1,0 +1,91 @@
+ /* --- NAVBAR --- */
+.container-fluid {
+    background-color: #000291;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.logo {
+    color: #f2f2f2;
+    font-size: 2em;
+}
+
+.mx {
+    color: #4ABEEF;
+}
+
+/* --- CONFIGURACIÓN BASE --- */
+body {
+    background-color: #f4f6fb; /* Fondo institucional claro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- CARD RECUPERAR --- */
+.card-recuperar {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 380px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-recuperar h2 {
+    color: #000291;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card-recuperar p {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* --- INPUT --- */
+.card-recuperar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+.card-recuperar input:focus {
+    border-color: #000291;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 2, 145, 0.3);
+}
+
+/* --- BOTÓN --- */
+.btn-azul {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #000291, #1f4fa3);
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.btn-azul:hover {
+    transform: scale(1.03);
+    background: linear-gradient(to right, #1f4fa3, #000291);
+}
+
+/* --- LINK VOLVER --- */
+.volver {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #000291;
+    font-weight: 500;
+}
