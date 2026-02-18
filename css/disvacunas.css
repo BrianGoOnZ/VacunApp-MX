@@ -1,63 +1,31 @@
-/* --- 1. Estilos de la Tabla --- */
-.tabla-contenedor {
-    padding: 0 !important;
-    overflow: hidden;
-    border: none;
-}
-
-.tabla-vapp {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-}
-
-.tabla-vapp thead th {
-    background-color: #7294c0; /* Azul grisáceo / acero */
-    color: #000291;
-    text-align: center;
-    padding: 1.2em .5em;
-    border: 1px solid #000291;
-    font-size: 0.85em;
+/* Mejoras para los Modales */
+.modal-vapp .card-header {
+    background-color: #000291;
+    color: white;
     font-weight: bold;
-    text-transform: uppercase;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
 }
-
-.tabla-vapp td {
-    border: 1px solid #000291;
-    height: 45px;
-}
-
-/* Columna lateral azul claro de la imagen */
-.col-azul-claro {
-    background-color: #9dbcd4 !important;
-    width: 60px;
-}
-
-/* --- 2. Ajustes del Modal para que coincida con tus tarjetas --- */
-.modal-vapp {
-    padding: 0 !important; 
+.btn-cerrar {
+    background: transparent;
     border: none;
-}
-
-.modal-body {
-    padding: 2em;
-    text-align: left;
-}
-
-.modal-body label {
-    color: #000291;
+    color: white;
     font-weight: bold;
-    margin-top: 10px;
+    font-size: 1.2rem;
 }
-
-/* Estilo de los cuadros de texto del formulario */
-.form-control {
+.btn-iniciarsesion {
+    background-color: #000291;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+.btn-iniciarsesion:hover {
+    background-color: #4ABEEF;
+    color: #000291;
+}
+textarea.form-control {
     border: 2px solid #9dbcd4;
     border-radius: 0.5em;
-    height: 40px;
-}
-
-.form-control:focus {
-    border-color: #000291;
-    box-shadow: none;
 }

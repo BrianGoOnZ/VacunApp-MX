@@ -18,6 +18,26 @@
 .nav-link {
     color: #f2f2f2;
 }
+/* Color de fondo del Navbar */
+.vapp-navbar-main {
+    background-color: #000291;
+    padding: 5px 0;
+}
+
+/* Alineación de los links en móvil */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #000291;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    
+    .nav-link {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 0;
+    }
+}
 
 /* Bienvenida */
 .bienvenida {
@@ -34,7 +54,7 @@
 .bienvenida::after {
     content: "";
     display: block;
-    width: 200px; /* ajustado para que no sea tan largo */
+    width: 200px;
     height: 4px;
     background-color: #4ABEEF;
     margin: 0.5em auto 0;
@@ -49,7 +69,6 @@
     margin-top: 1.5em;
 }
 
-/* Botones login/registro */
 .btn-iniciarsesion {
     text-decoration: none;
     background-color: #000291;
@@ -89,7 +108,7 @@
 /* Tamaños de imágenes */
 .imagen-vacunacion {
     width: 100%;
-    max-width: 300px; /* reducido */
+    max-width: 300px;
     height: auto;
     margin: 1em auto;
     border-radius: .5em;
@@ -98,7 +117,7 @@
 .imagen-chica,
 .imagen-card {
     width: 100%;
-    max-width: 200px; /* reducido */
+    max-width: 200px;
     height: auto;
     margin: 1em auto;
     border-radius: .5em;
