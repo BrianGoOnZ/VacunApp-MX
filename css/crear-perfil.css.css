@@ -2,8 +2,6 @@
     background-color: #f4f6fb;
     font-family: Arial, sans-serif;
 }
-
-
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -24,7 +22,6 @@
     color: #1e3a8a;
     font-weight: bold;
 }
-
 .card-custom {
     background: white;
     padding: 40px;
@@ -32,11 +29,9 @@
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
-
 h2 {
     color: #0b2a63;
 }
-
 .btn-primary-custom {
     padding: 10px;
     border: none;
@@ -45,7 +40,6 @@ h2 {
     color: white;
     font-weight: bold;
 }
-
 .btn-secondary-custom {
     padding: 8px;
     border-radius: 8px;

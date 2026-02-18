@@ -1,9 +1,7 @@
-/* --- 1. NAVBAR Y NAVEGACIÓN --- */
 .vapp-navbar-main {
     background-color: #000291;
     padding: 5px 0;
 }
-
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -11,42 +9,32 @@
     justify-content: space-between;
     align-items: center;
     margin: 0;
-    padding: 0 1rem; /* Corregido de auto a 1rem */
+    padding: 0 1rem;
 }
-
 .logo {
     color: #f2f2f2;
     font-size: 2em;
 }
-
 .mx {
     color: #4ABEEF;
 }
-
 .nav-link {
     color: #f2f2f2 !important;
 }
-
 .nav-link:hover {
     color: #4ABEEF !important;
 }
-
-/* Pestaña activa */
 .navbar-nav .nav-link.active {
     color: #4ABEEF !important;
     font-weight: bold;
     border-bottom: 2px solid #4ABEEF;
 }
-
-/* --- 2. CONFIGURACIÓN BASE --- */
 body {
     background-color: #f4f6fb; 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
-/* --- 3. TÍTULO ESTÁTICO (SIN ANIMACIÓN) --- */
 .titulo {
     color: #000291 !important;
     font-weight: bold !important;
@@ -54,50 +42,38 @@ body {
     text-transform: uppercase;
     margin-top: 1.5rem;
 }
-
-/* Al pasar el mouse solo cambia el color del texto */
 .titulo:hover {
     color: #4ABEEF !important;
 }
-
-/* Línea decorativa totalmente estática */
 .titulo::after {
     content: "";
     display: block;
-    width: 150px; /* Tamaño fijo */
+    width: 150px;
     height: 4px;
     background-color: #4ABEEF; 
     margin: 0.5em auto 0;
     border-radius: 2px;
 }
-
-/* --- 4. TABLA DEL CALENDARIO --- */
 .calendario-tabla td {
     height: 70px;
     vertical-align: middle;
     font-weight: bold;
 }
-
 .encabezado {
     background-color: #000291 !important;
     color: white !important;
 }
-
 .dia {
     background-color: #000291 !important;
     color: white !important;
 }
-
 .dia-claro {
     background-color: #93c5fd !important;
     color: #000291 !important;
 }
-
 .dia-vacio {
     background-color: #e9ecef;
 }
-
-/* --- 5. BOTONES Y COMPONENTES --- */
 .btn-azul {
     padding: 10px 20px;
     border: none;
@@ -106,29 +82,22 @@ body {
     color: white !important;
     font-weight: bold;
 }
-
 .btn-azul:hover {
     background: linear-gradient(to right, #1f4fa3, #000291) !important;
     color: white !important;
 }
-
-/* --- 6. MODALES Y FORMULARIOS --- */
 .bg-vapp {
     background-color: #000291 !important;
 }
-
 .modal-content {
     border-radius: 15px;
     border: none;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-
 .form-label {
     color: #000291;
     font-weight: bold;
 }
-
-/* --- 7. RESPONSIVO MÓVIL --- */
 @media (max-width: 991px) {
     .navbar-collapse {
         background-color: #000291;
@@ -136,7 +105,6 @@ body {
         border-radius: 8px;
         margin-top: 10px;
     }
-    
     .nav-link {
         border-bottom: 1px solid rgba(255,255,255,0.1);
         padding: 10px 0;

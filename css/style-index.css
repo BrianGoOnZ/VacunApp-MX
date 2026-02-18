@@ -1,4 +1,3 @@
-/* Navbar */
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -27,7 +26,6 @@
     font-weight: bold;
     border-bottom: 2px solid #4ABEEF;
 }
-
 .nav-link:hover {
     color: #4ABEEF;
 }
@@ -39,23 +37,18 @@
     background-color: #000291;
     padding: 5px 0;
 }
-
-/* Alineación de los links en móvil */
 @media (max-width: 991px) {
     .navbar-collapse {
         background-color: #000291;
         padding: 1rem;
         border-radius: 8px;
         margin-top: 10px;
-    }
-    
+    }   
     .nav-link {
         border-bottom: 1px solid rgba(255,255,255,0.1);
         padding: 10px 0;
     }
 }
-
-/* Bienvenida */
 .bienvenida {
     margin-top: .3em;
     font-size: 2em;
@@ -80,11 +73,9 @@
     color: #4ABEEF;
     transition: color 0.3s ease;
 }
-
 .container {
     margin-top: 1.5em;
 }
-
 .btn-iniciarsesion {
     text-decoration: none;
     background-color: #000291;
@@ -103,8 +94,6 @@
     color: #000291;
     border: 2px solid #000291;
 }
-
-/* Tarjetas unificadas (superiores y educativas) */
 .card-info,
 .card-educativa {
     background-color: #ffffff;
@@ -120,8 +109,6 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
-
-/* Tamaños de imágenes */
 .imagen-vacunacion {
     width: 100%;
     max-width: 300px;
@@ -139,13 +126,11 @@
     border-radius: .5em;
     transition: transform 0.3s ease;
 }
-
 .card-info:hover .imagen-vacunacion,
 .card-info:hover .imagen-chica,
 .card-educativa:hover .imagen-card {
     transform: scale(1.05);
 }
-
 .titulo-campana,
 .texto-card {
     font-size: 1em;
@@ -153,8 +138,6 @@
     font-weight: bold;
     margin-top: .5em;
 }
-
-/* Encabezados de tarjetas educativas */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -176,8 +159,6 @@
 .btn-cerrar:hover {
     color: #4ABEEF;
 }
-
-/* Sección educativa */
 .info-educativa {
     margin: 2em auto;
     padding: 1em;
@@ -197,7 +178,7 @@
 .titulo-seccion::after {
     content: "";
     display: block;
-    width: 200px; /* ajustado para que no sea tan largo */
+    width: 200px;
     height: 4px;
     background-color: #4ABEEF;
     margin: 0.5em auto 0;
@@ -207,8 +188,6 @@
     color: #4ABEEF;
     transition: color 0.3s ease;
 }
-
-/* Caja especial IA */
 .ia-card {
     display: flex;
     flex-direction: column;
@@ -235,8 +214,6 @@
     background-color: #000291;
     transform: scale(1.05);
 }
-
-/* Responsivo */
 @media (max-width: 768px) {
     .contenedor-cards .col-sm,
     .row .col-sm,
@@ -256,7 +233,6 @@
     font-weight: bold;
     text-align: center;
 }
-
 .btn-mapa:hover {
     background-color: #000291;
     color: white;
