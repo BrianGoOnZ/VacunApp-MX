@@ -1,4 +1,4 @@
-/* Navbar */
+/* --- 1. CONFIGURACIÓN GENERAL Y NAVBAR --- */
 .container-fluid {
     background-color: #000291;
     display: flex;
@@ -6,22 +6,44 @@
     justify-content: space-between;
     align-items: center;
     margin: 0;
-    padding: auto;
+    padding: 0 1rem;
 }
+
 .logo {
     color: #f2f2f2;
     font-size: 2em;
 }
+
 .mx {
     color: #4ABEEF;
 }
+
+/* Estilos de los links de navegación */
 .nav-link {
-    color: #f2f2f2;
+    color: #f2f2f2 !important;
 }
 
-/* --- 3. TÍTULOS Y CABECERAS --- */
+.nav-link:hover {
+    color: #4ABEEF !important;
+}
+
+/* Clase para la pestaña activa */
+.navbar-nav .nav-link.active {
+    color: #4ABEEF !important;
+    font-weight: bold;
+    border-bottom: 2px solid #4ABEEF;
+}
+
+.vapp-navbar-main {
+    background-color: #000291;
+    padding: 5px 0;
+}
+
+/* --- 2. TÍTULOS ESTÁTICOS --- */
 .titulo-notificaciones {
     margin-bottom: 3rem;
+    cursor: default;
+    text-align: center;
 }
 
 .titulo-notificaciones h1 {
@@ -31,36 +53,68 @@
     letter-spacing: 1px;
 }
 
-/* Adorno decorativo debajo del título */
+/* Línea decorativa estática (No cambia de tamaño) */
 .titulo-notificaciones::after {
     content: "";
     display: block;
-    width: 100px;
+    width: 200px; /* Tamaño fijo */
     height: 5px;
     background-color: #4ABEEF; 
     margin: 10px auto 0;
     border-radius: 10px;
 }
 
-/* --- 4. TARJETAS DE NOTIFICACIÓN (CARDS) --- */
+/* Solo cambia el color del texto, la línea se queda igual */
+.titulo-notificaciones:hover h1 {
+    color: #4ABEEF;
+}
+
+/* --- 3. TARJETAS DE NOTIFICACIÓN --- */
 .card-notificacion {
     background-color: #ffffff;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: none;
-    transition: transform 0.2s ease;
 }
 
-.card-notificacion:hover {
-    transform: translateY(-3px); /* Efecto de levante */
-}
-
-/* Encabezado de la tarjeta */
 .card-header-vapp {
     background-color: #dce1f2;
     padding: 15px 25px;
     color: #000291; 
     font-weight: 600;
     font-size: 1.1rem;
-    border-bottom: 1
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.card-body-vapp {
+    background-color: #ffffff;
+}
+
+/* Botón cerrar */
+.btn-close-vapp {
+    background: none;
+    border: none;
+    color: #000291;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-close-vapp:hover {
+    color: #ff4d4d;
+}
+
+/* --- 4. RESPONSIVO --- */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #000291;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .nav-link {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 0;
+    }
+}

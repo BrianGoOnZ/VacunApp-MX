@@ -8,23 +8,27 @@
     <link rel="stylesheet" href="css/style-notificaciones.css">
 </head>
 <body>
-  <header>
-    <div class="container-fluid">
-      <div class="logo">
-        VacunApp <span class="mx">MX</span>
-      </div>
-      <div>
-        <ul class="nav nav-tabs">
-          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-          <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
-          <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
-          <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
-          <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
+    <header class="vapp-navbar-main">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a href="index.html" class="logo text-decoration-none">
+                    VacunApp <span class="mx">MX</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
+                        <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
+                        <li class="nav-item"><a href="notificaciones.html" class="nav-link active">Notificaciones</a></li>
+                        <li class="nav-item"><a href="centros.html" class="nav-link">Centros</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <main class="container py-5">
         <section class="titulo-notificaciones text-center">
             <h1>Notificaciones</h1>
@@ -61,5 +65,14 @@
             </div>
         </div>
     </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para cerrar tarjetas
+        document.querySelectorAll('.btn-cerrar').forEach(boton => {
+            boton.addEventListener('click', function() {
+                this.closest('.col-lg-4').remove(); // Remueve el contenedor de la columna
+            });
+        });
+    </script>
 </body>
 </html>
