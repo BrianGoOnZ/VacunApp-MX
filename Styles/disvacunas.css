@@ -1,0 +1,69 @@
+.tabla-vapp {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+.tabla-vapp thead th {
+    background-color: #7294c0; 
+    color: #000291;
+    text-align: center;
+    padding: 15px 10px;
+    border: 1px solid #000291;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+.tabla-vapp td {
+    border: 1px solid #000291;
+    height: 50px;
+    background-color: white;
+}
+.col-azul-claro {
+    background-color: #9dbcd4 !important;
+    width: 120px;
+}
+.btn-iniciarsesion {
+    background-color: #000291;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.btn-iniciarsesion:hover {
+    background-color: #4ABEEF;
+    color: #000291;
+    transform: translateY(-2px);
+}
+.modal-vapp {
+    border-radius: 15px;
+    overflow: hidden;
+    border: none;
+}
+.modal-vapp .modal-header {
+    background-color: #000291;
+    color: white;
+    border-bottom: none;
+}
+.modal-vapp .modal-title {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.modal-vapp .modal-body {
+    padding: 25px;
+    background-color: #f8f9fa;
+}
+.modal-vapp .form-label {
+    color: #000291;
+    font-weight: bold;
+}
+.modal-vapp .form-control {
+    border: 2px solid #9dbcd4;
+    border-radius: 8px;
+}
+.modal-vapp .form-control:focus {
+    border-color: #000291;
+    box-shadow: none;
+}

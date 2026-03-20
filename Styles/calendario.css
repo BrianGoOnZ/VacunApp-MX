@@ -1,0 +1,112 @@
+.vapp-navbar-main {
+    background-color: #000291;
+    padding: 5px 0;
+}
+.container-fluid {
+    background-color: #000291;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0 1rem;
+}
+.logo {
+    color: #f2f2f2;
+    font-size: 2em;
+}
+.mx {
+    color: #4ABEEF;
+}
+.nav-link {
+    color: #f2f2f2 !important;
+}
+.nav-link:hover {
+    color: #4ABEEF !important;
+}
+.navbar-nav .nav-link.active {
+    color: #4ABEEF !important;
+    font-weight: bold;
+    border-bottom: 2px solid #4ABEEF;
+}
+body {
+    background-color: #f4f6fb; 
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.titulo {
+    color: #000291 !important;
+    font-weight: bold !important;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+}
+.titulo:hover {
+    color: #4ABEEF !important;
+}
+.titulo::after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 4px;
+    background-color: #4ABEEF; 
+    margin: 0.5em auto 0;
+    border-radius: 2px;
+}
+.calendario-tabla td {
+    height: 70px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.encabezado {
+    background-color: #000291 !important;
+    color: white !important;
+}
+.dia {
+    background-color: #000291 !important;
+    color: white !important;
+}
+.dia-claro {
+    background-color: #93c5fd !important;
+    color: #000291 !important;
+}
+.dia-vacio {
+    background-color: #e9ecef;
+}
+.btn-azul {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #000291, #1f4fa3) !important;
+    color: white !important;
+    font-weight: bold;
+}
+.btn-azul:hover {
+    background: linear-gradient(to right, #1f4fa3, #000291) !important;
+    color: white !important;
+}
+.bg-vapp {
+    background-color: #000291 !important;
+}
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.form-label {
+    color: #000291;
+    font-weight: bold;
+}
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #000291;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+    .nav-link {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 0;
+    }
+}
