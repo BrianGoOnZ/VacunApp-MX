@@ -80,19 +80,41 @@
     text-decoration: none;
     background-color: #000291;
     color: #f2f2f2;
-    padding: 1em 2em;
+    padding: 0.5em; /* Reduje un poco el padding lateral */
     border-radius: .5em;
     font-size: large;
     font-weight: bold;
     display: block;
-    margin: 1.5em;
+    /* CAMBIO AQUÍ: Usamos auto en los lados para que no desborde */
+    margin: 1em auto; 
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
     border: 2px solid transparent;
+    width: 90%; /* Forzamos a que no use el 100% para que respire */
+    text-align: center;
 }
 .btn-iniciarsesion:hover {
     background-color: #ffffff;
     color: #000291;
     border: 2px solid #000291;
+}
+.btn-logout {
+    display: inline-block;
+    text-decoration: none;
+    color: #dc3545; /* Rojo de alerta */
+    border: 2px solid #dc3545;
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    margin-top: 1em;
+    background-color: transparent;
+}
+
+.btn-logout:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+    transform: scale(1.05);
 }
 .card-info,
 .card-educativa {

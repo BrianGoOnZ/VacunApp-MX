@@ -1,3 +1,7 @@
+<?php 
+// 1. Iniciamos la sesión al principio de todo
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>VacunApp MX - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <link rel="stylesheet" href="Styles/style-index.css">
+    <link rel="stylesheet" href="style/style-index.css">
 </head>
 <body>
     <header class="vapp-navbar-main">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a href="index.html" class="logo text-decoration-none">
+                <a href="index.php" class="logo text-decoration-none">
                     VacunApp <span class="mx">MX</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -19,7 +23,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link active">Inicio</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link active">Inicio</a></li>
                         <li class="nav-item"><a href="vistas/vacunas.html" class="nav-link">Vacunas</a></li>
                         <li class="nav-item"><a href="vistas/calendario.html" class="nav-link">Calendario</a></li>
                         <li class="nav-item"><a href="vistas/notificaciones.html" class="nav-link">Notificaciones</a></li>
@@ -29,8 +33,10 @@
             </div>
         </nav>
     </header>
+
     <main>
         <div class="bienvenida">¡Bienvenid@ a VacunApp MX!</div>
+        
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-md-8">
@@ -41,13 +47,24 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card-info d-flex flex-column justify-content-center">
-                        <a href="vistas/login.html" class="btn-iniciarsesion">Iniciar Sesión</a>
-                        <a href="vistas/crear-perfil.html" class="btn-iniciarsesion">Registrarse</a>
+                        <?php if(isset($_SESSION['usuario'])): ?>
+                            <div class="user-logged py-3">
+                                <h3 class="mb-2" style="color: #000291;">Hola, <br><strong><?php echo $_SESSION['usuario']; ?></strong></h3>
+                                <p class="text-muted small mb-4">Sesión activa</p>
+                                <a href="vistas/home.php" class="btn-iniciarsesion">Mi Perfil</a>
+                                <a href="vistas/logout.php" class="btn-logout">Cerrar Sesión</a>
+                            </div>
+                        <?php else: ?>
+                            <a href="vistas/login.php" class="btn-iniciarsesion">Iniciar Sesión</a>
+                            <a href="vistas/crear-perfil.php" class="btn-iniciarsesion">Registrarse</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
+
             <div class="row g-4 mt-2 justify-content-center">
                 <div class="col-md-4 col-sm-6">
                     <div class="card-info">
@@ -69,6 +86,7 @@
                 </div>
             </div>
         </div>
+
         <section class="info-educativa mt-5">
             <div class="container">
                 <h2 class="titulo-seccion">Información Educativa</h2>
@@ -111,8 +129,8 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="card-educativa ia-card">
                             <div class="card-header"><span>Asistente IA</span></div>
-                            <div class="contenido-ia p-4">
-                                <button class="btn-ia">¿Puedo ayudarte?</button>
+                            <div class="contenido-ia p-4 text-center">
+                                <button class="btn-ia">¿En qué puedo ayudarte?</button>
                             </div>
                         </div>
                     </div>
@@ -120,6 +138,7 @@
             </div> 
         </section>
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.querySelectorAll('.btn-cerrar').forEach(boton => {
