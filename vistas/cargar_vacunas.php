@@ -5,35 +5,29 @@ $usuario  = "root";
 $password = "";
 $base_datos = "vacunapp"; 
 
-$conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
-
-// Verificar si la conexión falló
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-// 2. Recibir los datos del formulario (los nombres en $_POST deben coincidir con el 'name' de tus inputs)
+// 2. RECIBIR DATOS
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre_vacuna = $_POST['vacuna'];
-    $enfermedad    = $_POST['enfermedad'];
-    $dosis         = $_POST['dosis'];
-    $fecha         = $_POST['fecha'];
+    $vacuna = $_POST['vacuna'];
+    $enfermedad = $_POST['enfermedad'];
+    $dosis = $_POST['dosis'];
+    $fecha = $_POST['fecha'];
 
-    // 3. Preparar la consulta SQL
-    // Nota: Asegúrate de que los nombres de las columnas (nombre_vacuna, enfermedad, etc.) sean iguales a los de tu tabla en MySQL
+    // 3. INSERTAR (Asegúrate que los nombres de las columnas coincidan con tu BD)
     $sql = "INSERT INTO vacunas (nombre_vacuna, enfermedad, dosis, fecha) 
-            VALUES ('$nombre_vacuna', '$enfermedad', '$dosis', '$fecha')";
+            VALUES ('$vacuna', '$enfermedad', '$dosis', '$fecha')";
 
-    // 4. Ejecutar y redireccionar
-    if (mysqli_query($conexion, $sql)) {
-        // Si todo sale bien, nos regresa a la página de la tabla
+    if ($conn->query($sql) === TRUE) {
+        // Regresa a la tabla si todo sale bien
         header("Location: vacunas.php");
         exit();
     } else {
-        echo "Error al guardar los datos: " . mysqli_error($conexion);
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
-// Cerrar la conexión
-mysqli_close($conexion);
+$conn->close();
 ?>
