@@ -54,26 +54,37 @@ $resultado = $conn->query($sql);
             <div class="col-md-8 col-lg-7">
                 
                 <!-- CARD DINÁMICA DE RECORDATORIOS -->
-                <article class="card-notificacion mb-4">
-                    <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                        <span>Recordatorios</span>
-                        <button class="btn-close-vapp">✕</button>
+<article class="card-notificacion mb-4">
+    <div class="card-header-vapp d-flex justify-content-between align-items-center">
+        <span>Recordatorios</span>
+        <!-- AQUÍ NO CAMBIAMOS NADA, ESTE ES EL TÍTULO GENERAL -->
+    </div>
+    <div class="card-body-vapp p-3">
+        <?php if ($resultado && $resultado->num_rows > 0): ?>
+            <?php while($fila = $resultado->fetch_assoc()): ?>
+                <div class="p-2 border-bottom mb-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <strong style="color: #000291;"><?php echo htmlspecialchars($fila['titulo']); ?></strong>
+                        
+                        <!-- AQUÍ PONES EL ENLACE DE BORRAR PARA CADA RECORDATORIO -->
+                        <a href="borrar_recordatorio.php?id=<?php echo $fila['id']; ?>" 
+                           class="btn-close-vapp text-decoration-none" 
+                           style="color: #000291; font-weight: bold; margin-left: 10px;"
+                           onclick="return confirm('¿Quieres eliminar este recordatorio permanentemente?')">
+                           ✕
+                        </a>
                     </div>
-                    <div class="card-body-vapp p-3">
-                        <?php if ($resultado && $resultado->num_rows > 0): ?>
-                            <?php while($fila = $resultado->fetch_assoc()): ?>
-                                <div class="p-2 border-bottom mb-2">
-                                    <div class="d-flex justify-content-between">
-                                        <strong style="color: #000291;"><?php echo htmlspecialchars($fila['titulo']); ?></strong>
-                                        <small class="text-muted"><?php echo date("d/m/Y", strtotime($fila['fecha_recordatorio'])); ?></small>
-                                    </div>
-                                    <p class="m-0 text-muted small"><?php echo htmlspecialchars($fila['descripcion']); ?></p>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php else: ?>
-                            <p class="m-0 text-muted">No tienes recordatorios pendientes.</p>
-                        <?php endif; ?>
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0 text-muted small"><?php echo htmlspecialchars($fila['descripcion']); ?></p>
+                        <small class="text-muted"><?php echo date("d/m/Y", strtotime($fila['fecha_recordatorio'])); ?></small>
                     </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="m-0 text-muted">No tienes recordatorios pendientes.</p>
+        <?php endif; ?>
+    </div>
+</article>
                 </article>
 
                 <!-- CARD ESTÁTICA: MENSAJES -->
