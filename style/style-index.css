@@ -372,3 +372,42 @@
 .dia-pendiente { background-color: #ffeb3b !important; color: #000291 !important; border: 2px solid #fbc02d !important; }
 .dia-completada { background-color: #4caf50 !important; color: white !important; }
 .dia-perdida { background-color: #f44336 !important; color: white !important; }
+
+/* --- ESTILOS DE NOTIFICACIONES --- */
+.card-notificacion {
+    background: white;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.card-header-vapp {
+    background-color: #000291;
+    color: white;
+    padding: 15px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.item-notificacion {
+    transition: background 0.3s ease;
+}
+
+.item-notificacion:hover {
+    background-color: #f0f7ff; /* Celeste de tu paleta */
+}
+
+.btn-delete-vapp {
+    color: #f44336;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+    padding: 5px 10px;
+}
+
+.btn-delete-vapp:hover {
+    transform: scale(1.2);
+    color: #c62828;
+}
