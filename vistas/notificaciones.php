@@ -18,7 +18,6 @@ $resultado = $conn->query($sql);
     <title>VacunApp MX - Notificaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Enlace a tu archivo CSS externo -->
     <link rel="stylesheet" href="Styles/style-notificaciones.css">
 </head>
 <body>
@@ -28,16 +27,12 @@ $resultado = $conn->query($sql);
                 <a href="index.php" class="logo text-decoration-none">
                     VacunApp <span class="mx">MX</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
                         <li class="nav-item"><a href="vacunas.php" class="nav-link">Vacunas</a></li>
                         <li class="nav-item"><a href="calendario.php" class="nav-link">Calendario</a></li>
                         <li class="nav-item"><a href="notificaciones.php" class="nav-link active">Notificaciones</a></li>
-                        <li class="nav-item"><a href="centros.php" class="nav-link">Centros</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,8 +40,7 @@ $resultado = $conn->query($sql);
     </header>
 
     <main class="container py-5">
-        <!-- Título con el estilo de la barra azul -->
-        <section class="titulo-notificaciones">
+        <section class="titulo-notificaciones mb-4">
             <h1>Notificaciones</h1>
         </section>
 
@@ -54,58 +48,44 @@ $resultado = $conn->query($sql);
             <div class="col-md-8 col-lg-7">
                 
                 <!-- CARD DINÁMICA DE RECORDATORIOS -->
-<article class="card-notificacion mb-4">
-    <div class="card-header-vapp d-flex justify-content-between align-items-center">
-        <span>Recordatorios</span>
-        <!-- AQUÍ NO CAMBIAMOS NADA, ESTE ES EL TÍTULO GENERAL -->
-    </div>
-    <div class="card-body-vapp p-3">
-        <?php if ($resultado && $resultado->num_rows > 0): ?>
-            <?php while($fila = $resultado->fetch_assoc()): ?>
-                <div class="p-2 border-bottom mb-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <strong style="color: #000291;"><?php echo htmlspecialchars($fila['titulo']); ?></strong>
-                        
-                        <!-- AQUÍ PONES EL ENLACE DE BORRAR PARA CADA RECORDATORIO -->
-                        <a href="borrar_recordatorio.php?id=<?php echo $fila['id']; ?>" 
-                           class="btn-close-vapp text-decoration-none" 
-                           style="color: #000291; font-weight: bold; margin-left: 10px;"
-                           onclick="return confirm('¿Quieres eliminar este recordatorio permanentemente?')">
-                           ✕
-                        </a>
+                <article class="card-notificacion mb-4">
+                    <div class="card-header-vapp d-flex justify-content-between align-items-center">
+                        <span>Recordatorios</span>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="m-0 text-muted small"><?php echo htmlspecialchars($fila['descripcion']); ?></p>
-                        <small class="text-muted"><?php echo date("d/m/Y", strtotime($fila['fecha_recordatorio'])); ?></small>
+                    <div class="card-body-vapp p-3">
+                        <?php if ($resultado && $resultado->num_rows > 0): ?>
+                            <?php while($fila = $resultado->fetch_assoc()): ?>
+                                <div class="p-2 border-bottom mb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <strong style="color: #000291;"><?php echo htmlspecialchars($fila['titulo']); ?></strong>
+                                        
+                                        <!-- BOTÓN BORRAR REAL -->
+                                        <a href="borrar_recordatorio.php?id=<?php echo $fila['id']; ?>" 
+                                           class="btn-close-vapp text-decoration-none" 
+                                           style="color: #000291; font-weight: bold;"
+                                           onclick="return confirm('¿Eliminar este recordatorio?')">
+                                           ✕
+                                        </a>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="m-0 text-muted small"><?php echo htmlspecialchars($fila['descripcion']); ?></p>
+                                        <small class="text-muted"><?php echo date("d/m/Y", strtotime($fila['fecha_recordatorio'])); ?></small>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <p class="m-0 text-muted">No tienes recordatorios pendientes.</p>
+                        <?php endif; ?>
                     </div>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p class="m-0 text-muted">No tienes recordatorios pendientes.</p>
-        <?php endif; ?>
-    </div>
-</article>
                 </article>
 
                 <!-- CARD ESTÁTICA: MENSAJES -->
                 <article class="card-notificacion mb-4">
                     <div class="card-header-vapp d-flex justify-content-between align-items-center">
                         <span>Mensajes</span>
-                        <button class="btn-close-vapp">✕</button>
                     </div>
                     <div class="card-body-vapp p-3">
                         <p class="m-0 text-muted">Tienes un mensaje del sector salud.</p>
-                    </div>
-                </article>
-
-                <!-- CARD ESTÁTICA: INFORMACIÓN -->
-                <article class="card-notificacion mb-4">
-                    <div class="card-header-vapp d-flex justify-content-between align-items-center">
-                        <span>Información Educativa</span>
-                        <button class="btn-close-vapp">✕</button>
-                    </div>
-                    <div class="card-body-vapp p-3">
-                        <p class="m-0 text-muted">Nueva campaña de vacunación disponible.</p>
                     </div>
                 </article>
 
@@ -114,15 +94,6 @@ $resultado = $conn->query($sql);
     </main>
 
     <?php $conn->close(); ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Función para cerrar las cards con tu clase btn-close-vapp
-        document.querySelectorAll('.btn-close-vapp').forEach(boton => {
-            boton.addEventListener('click', function() {
-                this.closest('.card-notificacion').style.display = 'none';
-            });
-        });
-    </script>
 </body>
 </html>
