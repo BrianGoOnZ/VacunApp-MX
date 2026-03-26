@@ -7,7 +7,6 @@ $base_datos = "vacunapp";
 
 $conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
 
-// Verificar si la conexión falló
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }

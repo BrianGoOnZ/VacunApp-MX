@@ -5,6 +5,9 @@ $user = 'root';
 $pass = 'abril123';
 $db   = 'vacunapp'; 
 
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
