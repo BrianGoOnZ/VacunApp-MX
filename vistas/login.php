@@ -5,14 +5,11 @@
     <title>Iniciar Sesión - VacunApp MX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/css-login.css">
+    <link rel="stylesheet" href="../style/style-index.css">
 </head>
 <body>
     <header>
-        <div class="container-fluid">
-            <div class="logo">
-                VacunApp <span class="mx">MX</span>
-            </div>
-        </div>
+        <?php include('componentes/navbar.php')?>
     </header>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card-custom">

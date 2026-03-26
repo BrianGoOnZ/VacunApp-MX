@@ -5,31 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VacunApp MX - Centros</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="Styles/style-index.css">
-  <link rel="stylesheet" href="Styles/centros.css">
+  <link rel="stylesheet" href="../style/style-index.css">
+  <link rel="stylesheet" href="../style/centros.css">
 </head>
 <body>
-    <header class="vapp-navbar-main">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a href="index.html" class="logo text-decoration-none">
-                    VacunApp <span class="mx">MX</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                        <li class="nav-item"><a href="vacunas.html" class="nav-link">Vacunas</a></li>
-                        <li class="nav-item"><a href="calendario.html" class="nav-link">Calendario</a></li>
-                        <li class="nav-item"><a href="notificaciones.html" class="nav-link">Notificaciones</a></li>
-                        <li class="nav-item"><a href="centros.html" class="nav-link active">Centros</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <?php include('componentes/navbar.php')?>
+  </header>
   <main>
     <div class="bienvenida text-center">CENTROS CERCANOS</div>
     <div class="container mt-5">
