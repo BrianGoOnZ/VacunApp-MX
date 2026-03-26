@@ -3,7 +3,7 @@
 $servidor = "localhost";
 $usuario  = "root";
 $password = "";
-$base_datos = "vacunapp"; // <--- Verifica que se llame así en tu phpMyAdmin
+$base_datos = "vacunapp"; 
 
 $conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
 
