@@ -1,38 +1,41 @@
 <?php
-// conexion
+// 1. Configuración de la conexión
 $servidor = "localhost";
 $usuario  = "root";
 $password = "abril123";
-$base_datos = "vacunapp"; 
+$base_datos = "vacunapp";
 
-$conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
+// Crear la conexión
+$conn = new mysqli($servidor, $usuario, $password, $base_datos);
 
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-// 2. Recibir los datos del formulario (los nombres en $_POST deben coincidir con el 'name' de tus inputs)
+// 2. Verifica que los datos lleguen por el método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre_vacuna = $_POST['vacuna'];
-    $enfermedad    = $_POST['enfermedad'];
-    $dosis         = $_POST['dosis'];
-    $fecha         = $_POST['fecha'];
+    
+    // Recibimos los datos del formulario (los 'name' del modal)
+    $nombre_vacuna = $_POST['nombre_vacuna'];
+    $fecha_aplicacion = $_POST['fecha_aplicacion'];
+    $lote = $_POST['lote'];
+    $proxima_cita = $_POST['proxima_cita'];
 
     // 3. Preparar la consulta SQL
-    // Nota: Asegúrate de que los nombres de las columnas (nombre_vacuna, enfermedad, etc.) sean iguales a los de tu tabla en MySQL
-    $sql = "INSERT INTO vacunas (nombre_vacuna, enfermedad, dosis, fecha) 
-            VALUES ('$nombre_vacuna', '$enfermedad', '$dosis', '$fecha')";
+    $sql = "INSERT INTO vacunas (nombre_vacuna, fecha_aplicacion, lote, proxima_cita) 
+            VALUES ('$nombre_vacuna', '$fecha_aplicacion', '$lote', '$proxima_cita')";
 
-    // 4. Ejecutar y redireccionar
-    if (mysqli_query($conexion, $sql)) {
-        // Si todo sale bien, nos regresa a la página de la tabla
+
+    if ($conn->query($sql) === TRUE) {
+        // Si todo sale bien, regresa automáticamente a la lista de vacunas
         header("Location: vacunas.php");
         exit();
     } else {
-        echo "Error al guardar los datos: " . mysqli_error($conexion);
+        echo "Error al registrar la vacuna: " . $conn->error;
     }
 }
 
-// Cerrar la conexión
-mysqli_close($conexion);
+// Cerrar la conexión al finalizar
+$conn->close();
 ?>
