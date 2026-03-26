@@ -161,6 +161,40 @@ $conn = new mysqli("localhost", "root", "abril123", "vacunapp");
         </div>
     </div>
 </div>
+<!-- MODAL PARA AÑADIR RECORDATORIO -->
+<div class="modal fade" id="modalRecordatorio" tabindex="-1" aria-labelledby="modalRecordatorioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-vapp">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalRecordatorioLabel">NUEVO RECORDATORIO</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- El action apunta al archivo PHP que creamos para guardar -->
+                <form action="guardar_recordatorio.php" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Título del Recordatorio</label>
+                        <input type="text" name="titulo" class="form-control" placeholder="Ej: Refuerzo de Sarampión" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea name="descripcion" class="form-control" rows="3" placeholder="Nota adicional..."></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Fecha Programada</label>
+                        <input type="date" name="fecha_recordatorio" class="form-control" required>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn-iniciarsesion w-100">Guardar Recordatorio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
