@@ -1,41 +1,30 @@
 <?php
-// 1. Configuración de la conexión
-$servidor = "localhost";
-$usuario  = "root";
-$password = "abril123";
-$base_datos = "vacunapp";
-
-// Crear la conexión
-$conn = new mysqli($servidor, $usuario, $password, $base_datos);
-
+// 1. CONEXIÓN (Usando tus datos: abril123)
+$conn = new mysqli("localhost", "root", "abril123", "vacunapp");
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// 2. Verifica que los datos lleguen por el método POST
+// 2. RECIBIR DATOS
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Recibimos los datos del formulario (los 'name' del modal)
-    $nombre_vacuna = $_POST['nombre_vacuna'];
-    $fecha_aplicacion = $_POST['fecha_aplicacion'];
-    $lote = $_POST['lote'];
-    $proxima_cita = $_POST['proxima_cita'];
+    $vacuna = $_POST['vacuna'];
+    $enfermedad = $_POST['enfermedad'];
+    $dosis = $_POST['dosis'];
+    $fecha = $_POST['fecha'];
 
-    // 3. Preparar la consulta SQL
-    $sql = "INSERT INTO vacunas (nombre_vacuna, fecha_aplicacion, lote, proxima_cita) 
-            VALUES ('$nombre_vacuna', '$fecha_aplicacion', '$lote', '$proxima_cita')";
-
+    // 3. INSERTAR (Asegúrate que los nombres de las columnas coincidan con tu BD)
+    $sql = "INSERT INTO vacunas (nombre_vacuna, enfermedad, dosis, fecha) 
+            VALUES ('$vacuna', '$enfermedad', '$dosis', '$fecha')";
 
     if ($conn->query($sql) === TRUE) {
-        // Si todo sale bien, regresa automáticamente a la lista de vacunas
+        // Regresa a la tabla si todo sale bien
         header("Location: vacunas.php");
         exit();
     } else {
-        echo "Error al registrar la vacuna: " . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
-// Cerrar la conexión al finalizar
 $conn->close();
 ?>
