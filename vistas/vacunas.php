@@ -1,6 +1,13 @@
 <?php
-// 1. CONEXIÓN
-$conn = new mysqli("localhost", "root", "abril123", "vacunapp");
+session_start();
+if(!isset($_SESSION['usuario'])){
+    header("Location: ../index.php");
+    exit();
+}
+include '../database/db.php'; 
+include '../modelos/Vacuna.php';
+
+$vacunaModel = new Vacuna($conexion);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,187 +17,216 @@ $conn = new mysqli("localhost", "root", "abril123", "vacunapp");
     <title>VacunApp MX - Mis Vacunas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* TUS ESTILOS EXACTOS */
-        .vapp-navbar-main { background-color: #000291; padding: 10px 0; }
-        .logo { color: white; font-weight: bold; font-size: 24px; }
-        .logo .mx { color: #4ABEEF; }
-        .nav-link { color: white !important; margin: 0 10px; }
-        
-        .bienvenida { font-size: 28px; font-weight: bold; color: #000291; margin-top: 20px; }
-
-        .tabla-vapp { width: 100%; border-collapse: collapse; background-color: white; }
-        .tabla-vapp thead th {
-            background-color: #7294c0; 
-            color: #000291;
-            text-align: center;
-            padding: 15px 10px;
-            border: 1px solid #000291;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .tabla-vapp td { border: 1px solid #000291; height: 50px; background-color: white; text-align: center; }
-        .col-azul-claro { background-color: #9dbcd4 !important; width: 120px; }
-
-        .btn-iniciarsesion {
-            background-color: #000291;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .btn-iniciarsesion:hover { background-color: #4ABEEF; color: #000291; transform: translateY(-2px); }
-
-        .modal-vapp { border-radius: 15px; overflow: hidden; border: none; }
-        .modal-vapp .modal-header { background-color: #000291; color: white; border-bottom: none; }
-        .modal-vapp .modal-title { font-weight: bold; letter-spacing: 1px; }
-        .modal-vapp .modal-body { padding: 25px; background-color: #f8f9fa; }
-        .modal-vapp .form-label { color: #000291; font-weight: bold; }
-        .modal-vapp .form-control { border: 2px solid #9dbcd4; border-radius: 8px; }
-        .modal-vapp .form-control:focus { border-color: #000291; box-shadow: none; }
-    </style>
+    <link rel="stylesheet" href="../style/style-index.css">
 </head>
-<body class="bg-light">
+<body>
 
-<header class="vapp-navbar-main">
-    <nav class="navbar navbar-expand-lg navbar-dark container">
-        <a href="index.php" class="logo text-decoration-none">
-            VacunApp <span class="mx">MX</span>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-                <li class="nav-item"><a href="vacunas.php" class="nav-link">Vacunas</a></li>
-                <li class="nav-item"><a href="calendario.php" class="nav-link">Calendario</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Escanear</a></li>
-            </ul>
-            <div class="navbar-nav">
-                <a href="#" class="nav-link"><i class="fas fa-user-circle fa-2x"></i></a>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main class="container mt-5">
-    <div class="bienvenida text-center mb-4">MIS VACUNAS</div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <div class="d-grid gap-3">
-                <button class="btn-iniciarsesion" data-bs-toggle="modal" data-bs-target="#modalAgregarVacuna">
-                    + Añadir vacuna
+    <header class="vapp-navbar-main">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a href="../index.php" class="logo text-decoration-none">
+                    VacunApp <span class="mx">MX</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="btn-iniciarsesion" data-bs-toggle="modal" data-bs-target="#modalRecordatorio">
-                    + Recordatorio
-                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="../index.php" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="vacunas.php" class="nav-link active">Vacunas</a></li>
+                        <li class="nav-item"><a href="calendario.php" class="nav-link">Calendario</a></li>
+                        <li class="nav-item"><a href="notificaciones.php" class="nav-link">Notificaciones</a></li>
+                        <li class="nav-item"><a href="centros.php" class="nav-link">Centros</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <div class="bienvenida-seccion mb-4">Mis Vacunas Registradas</div>
+
+        <?php if(isset($_GET['msj']) && $_GET['msj'] == 'guardado'): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">Vacuna guardada correctamente.</div>
+        <?php elseif(isset($_GET['msj']) && $_GET['msj'] == 'actualizado'): ?>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">Datos actualizados correctamente.</div>
+        <?php elseif(isset($_GET['msj']) && $_GET['msj'] == 'eliminado'): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">Registro eliminado.</div>
+        <?php endif; ?>
+
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="d-grid gap-3">
+                    <button class="btn-iniciarsesion" data-bs-toggle="modal" data-bs-target="#modalAgregarVacuna">
+                        <i class="fas fa-plus-circle me-2"></i>Añadir Vacuna
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="table-responsive shadow-sm rounded bg-white">
+                    <table class="tabla-vapp mb-0">
+                        <thead>
+                            <tr>
+                                <th class="col-azul-claro">Vacuna</th>
+                                <th>ENFERMEDAD</th>
+                                <th>DOSIS</th>
+                                <th>FRECUENCIA</th>
+                                <th>FECHA</th>
+                                <th style="width: 120px;">ACCIONES</th> </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $resultado = $vacunaModel->listar();
+
+                            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                                while($fila = mysqli_fetch_assoc($resultado)) {
+                                    $id = $fila['id'];
+                                    echo "<tr>";
+                                    echo "<td class='col-azul-claro'>" . htmlspecialchars($fila['nombre_vacuna']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($fila['enfermedad']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($fila['dosis']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($fila['frecuencia']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($fila['fecha']) . "</td>";
+                                    echo "<td>
+                                            <div class='d-flex justify-content-center'>
+                                                <a href='#' 
+                                                   class='accion-btn text-primary' 
+                                                   data-bs-toggle='modal' 
+                                                   data-bs-target='#modalEditarVacuna'
+                                                   data-bs-id='{$id}'
+                                                   data-bs-nombre='" . htmlspecialchars($fila['nombre_vacuna']) . "'
+                                                   data-bs-enfermedad='" . htmlspecialchars($fila['enfermedad']) . "'
+                                                   data-bs-dosis='" . htmlspecialchars($fila['dosis']) . "'
+                                                   data-bs-frecuencia='" . htmlspecialchars($fila['frecuencia']) . "'
+                                                   data-bs-fecha='" . htmlspecialchars($fila['fecha']) . "'>
+                                                   <i class='fas fa-edit'></i>
+                                                </a>
+
+                                                <a href='../controladores/eliminar_vacuna.php?id={$id}' 
+                                                   class='accion-btn text-danger' 
+                                                   onclick='return confirm(\"¿Seguro que quieres eliminar este registro?\")'>
+                                                    <i class='fas fa-trash-alt'></i>
+                                                </a>
+                                            </div>
+                                          </td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='6' class='py-4 text-center'>No hay vacunas registradas aún.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <table class="tabla-vapp">
-                <thead>
-                    <tr>
-                        <th class="col-azul-claro">Vacuna</th>
-                        <th>ENFERMEDAD QUE PREVIENE</th>
-                        <th>DOSIS</th>
-                        <th>EDAD Y FRECUENCIA</th>
-                        <th>FECHA</th>
-                    </tr>
-                </thead>
-                    <tbody>
-    <?php
-    // Usamos la conexión $conn que creaste en la línea 3
-    $consulta = "SELECT * FROM vacunas";
-    $resultado = $conn->query($consulta);
+    </main>
 
-    if ($resultado && $resultado->num_rows > 0) {
-        while($fila = $resultado->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td class='col-azul-claro'>" . htmlspecialchars($fila['nombre_vacuna']) . "</td>";
-            echo "<td>" . htmlspecialchars($fila['enfermedad']) . "</td>";
-            echo "<td>" . htmlspecialchars($fila['dosis']) . "</td>";
-            // Si no tienes la columna edad_frecuencia, puedes dejar un texto fijo o usar otra columna
-            echo "<td>" . (isset($fila['edad_frecuencia']) ? htmlspecialchars($fila['edad_frecuencia']) : 'Pendiente') . "</td>";
-            echo "<td>" . htmlspecialchars($fila['fecha']) . "</td>";
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='5' class='text-center'>Aún no hay vacunas registradas</td></tr>";
-    }
-    ?>
-</tbody>
-            </table>
-        </div>
-    </div>
-</main>
-
-<!-- MODAL AGREGAR VACUNA -->
-<div class="modal fade" id="modalAgregarVacuna" tabindex="-1">
-    <div class="modal-dialog modal-vapp">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">NUEVA VACUNA</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form action="cargar_vacunas.php" method="POST">
-                    <div class="mb-3">
-                        <label class="form-label">Nombre de la Vacuna</label>
-                        <input type="text" name="vacuna" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Enfermedad</label>
-                        <input type="text" name="enfermedad" class="form-control" required>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 mb-3">
-                            <label class="form-label">Dosis</label>
-                            <input type="text" name="dosis" class="form-control">
+    <div class="modal fade modal-vapp" id="modalAgregarVacuna" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">REGISTRAR NUEVA VACUNA</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="../controladores/vacunas_controller.php" method="POST">
+                        <input type="hidden" name="accion" value="crear">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre de la Vacuna</label>
+                            <input type="text" name="vacuna" class="form-control" required>
                         </div>
-                        <div class="col-6 mb-3">
-                            <label class="form-label">Fecha</label>
-                            <input type="date" name="fecha" class="form-control">
+                        <div class="mb-3">
+                            <label class="form-label">Enfermedad</label>
+                            <input type="text" name="enfermedad" class="form-control" required>
                         </div>
-                    </div>
-                    <button type="submit" class="btn-iniciarsesion w-100">Guardar Vacuna</button>
-                </form>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Dosis</label>
+                                <input type="text" name="dosis" class="form-control">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Frecuencia</label>
+                                <input type="text" name="frecuencia" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de Aplicación</label>
+                            <input type="date" name="fecha" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn-iniciarsesion w-100">Guardar Vacuna</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- MODAL RECORDATORIO -->
-<div class="modal fade" id="modalRecordatorio" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-vapp">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">NUEVO RECORDATORIO</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Asegúrate de que el action sea el nombre de tu archivo PHP -->
-                <form action="guardar_recordatorio.php" method="POST">
-                    <div class="mb-3">
-                        <label class="form-label">Título</label>
-                        <input type="text" name="titulo" class="form-control" placeholder="Ej: Refuerzo Influenza" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha del Recordatorio</label>
-                        <input type="date" name="fecha_recordatorio" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nota adicional</label>
-                        <textarea name="descripcion" class="form-control" rows="2"></textarea>
-                    </div>
-                    <button type="submit" class="btn-iniciarsesion w-100">Crear Recordatorio</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade modal-vapp" id="modalEditarVacuna" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ACTUALIZAR DATOS DE LA VACUNA</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="../controladores/vacunas_controller.php" method="POST">
+                        <input type="hidden" name="accion" value="actualizar">
+                        <input type="hidden" name="id" id="editar-id">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre de la Vacuna</label>
+                            <input type="text" name="vacuna" id="editar-nombre" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Enfermedad</label>
+                            <input type="text" name="enfermedad" id="editar-enfermedad" class="form-control" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Dosis</label>
+                                <input type="text" name="dosis" id="editar-dosis" class="form-control">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Frecuencia</label>
+                                <input type="text" name="frecuencia" id="editar-frecuencia" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de Aplicación</label>
+                            <input type="date" name="fecha" id="editar-fecha" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn-iniciarsesion w-100 mt-3">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const modalEditar = document.getElementById('modalEditarVacuna');
+        modalEditar.addEventListener('show.bs.modal', event => {
+            // El elemento (botón a) que disparó el modal
+            const boton = event.relatedTarget;
+            
+            // Extraemos la información de los atributos data-bs-*
+            const id = boton.getAttribute('data-bs-id');
+            const nombre = boton.getAttribute('data-bs-nombre');
+            const enfermedad = boton.getAttribute('data-bs-enfermedad');
+            const dosis = boton.getAttribute('data-bs-dosis');
+            const frecuencia = boton.getAttribute('data-bs-frecuencia');
+            const fecha = boton.getAttribute('data-bs-fecha');
+
+            // Buscamos los inputs del modal y les asignamos el valor
+            modalEditar.querySelector('#editar-id').value = id;
+            modalEditar.querySelector('#editar-nombre').value = nombre;
+            modalEditar.querySelector('#editar-enfermedad').value = enfermedad;
+            modalEditar.querySelector('#editar-dosis').value = dosis;
+            modalEditar.querySelector('#editar-frecuencia').value = frecuencia;
+            modalEditar.querySelector('#editar-fecha').value = fecha;
+        });
+    </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 // 1. Configuración de la conexión (Asegúrate de que el nombre de la BD sea correcto)
 $servidor = "localhost";
 $usuario  = "root";
-$password = "abril123";
+$password = "";
 $base_datos = "vacunapp"; 
 
 $conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
