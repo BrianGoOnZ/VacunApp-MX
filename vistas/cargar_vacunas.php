@@ -1,5 +1,5 @@
 <?php
-// 1. Configuración de la conexión (Asegúrate de que el nombre de la BD sea correcto)
+// conexion
 $servidor = "localhost";
 $usuario  = "root";
 $password = "abril123";

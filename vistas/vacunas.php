@@ -1,6 +1,10 @@
 <?php
-// 1. CONEXIÓN
-$conn = new mysqli("localhost", "root", "abril123", "vacunapp");
+// 1. Conexión a la base de datos
+$name = 'localhost';
+$user = 'root';
+$pass = 'abril123';
+$db   = 'vacunapp'; 
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
