@@ -1,9 +1,6 @@
 <?php
-// 1. Conexión a la base de datos
-$name = 'localhost';
-$user = 'root';
-$pass = 'abril123';
-$db   = 'vacunapp'; 
+// Conexión (usando tus datos)
+$conn = new mysqli("localhost", "root", "abril123", "vacunapp");
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
