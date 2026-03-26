@@ -1,16 +1,12 @@
 <?php
 session_start();
 include '../database/db.php';
-
-// Ruta absoluta para evitar el error de "No such file"
 $ruta_m = dirname(__DIR__) . '/modelos/recordatorios.php';
-
 if (file_exists($ruta_m)) {
     include_once $ruta_m;
 } else {
     die("Error Crítico: No se encontró el archivo físico en: " . $ruta_m);
 }
-
 $recordatorioModel = new Recordatorio($conexion);
 $resultado = $recordatorioModel->listar();
 ?>
@@ -25,7 +21,6 @@ $resultado = $recordatorioModel->listar();
     <link rel="stylesheet" href="../style/style-index.css">
 </head>
 <body style="background-color: #f4f6fb;">
-
     <header class="vapp-navbar-main">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
@@ -45,13 +40,10 @@ $resultado = $recordatorioModel->listar();
             </div>
         </nav>
     </header>
-
     <main class="container py-5">
         <h2 class="titulo-seccion mb-4 text-center">Mis Notificaciones</h2>
-
         <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-8">
-                
+            <div class="col-md-9 col-lg-8">    
                 <div class="card-notificacion shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
                     <div class="card-header-vapp d-flex justify-content-between align-items-center" style="background-color: #000291; color: white; padding: 15px;">
                         <span><i class="fas fa-bell me-2"></i>Avisos del Sistema</span>
@@ -59,7 +51,6 @@ $resultado = $recordatorioModel->listar();
                             <?php echo ($resultado) ? mysqli_num_rows($resultado) : 0; ?>
                         </span>
                     </div>
-
                     <div class="card-body p-0 bg-white">
                         <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
                             <?php while($fila = mysqli_fetch_assoc($resultado)): ?>
@@ -71,8 +62,7 @@ $resultado = $recordatorioModel->listar();
                                             <i class="far fa-calendar-alt me-1"></i>
                                             <?php echo date("d/m/Y", strtotime($fila['fecha_recordatorio'])); ?>
                                         </small>
-                                    </div>
-                                    
+                                    </div>                       
                                     <a href="../controladores/notificaciones_controller.php?eliminar_id=<?php echo $fila['id']; ?>" 
                                        class="btn-delete-vapp text-decoration-none"
                                        style="color: #4ABEEF;"
@@ -89,11 +79,9 @@ $resultado = $recordatorioModel->listar();
                         <?php endif; ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,50 +1,51 @@
 <?php
-include '../database/db.php';
-include '../modelos/Cita.php';
+session_start();
+require_once '../database/db.php';
+require_once '../modelos/Cita.php';
 
 $citaModel = new Cita($conexion);
 
-// --- GUARDAR CITA Y GENERAR NOTIFICACIÓN ---
+// GUARDAR NUEVA CITA
 if (isset($_POST['btn_guardar'])) {
     $nombre = $_POST['nombre_vacuna'];
     $fecha = $_POST['fecha_vacuna'];
-    $es_recordatorio = isset($_POST['es_recordatorio']) ? 1 : 0;
+    $es_rec = isset($_POST['es_recordatorio']) ? 1 : 0;
 
-    // 1. Guardamos la cita en la tabla 'citas'
-    if ($citaModel->crear($nombre, $fecha, $es_recordatorio)) {
-        
-        // 2. Si el usuario marcó que quiere recordatorio, lo insertamos en la tabla 'recordatorios'
-        // O puedes quitar el 'if' si quieres que SIEMPRE genere notificación
-        if ($es_recordatorio) {
-            $titulo_notif = "Cita: " . $nombre;
-            $desc_notif = "Recuerda tu aplicación de la vacuna " . $nombre;
-            
-            // Limpiamos los datos para evitar errores de SQL
-            $titulo_limpio = mysqli_real_escape_string($conexion, $titulo_notif);
-            $desc_limpio = mysqli_real_escape_string($conexion, $desc_notif);
-
-            $sql_notif = "INSERT INTO recordatorios (titulo, descripcion, fecha_recordatorio) 
-                          VALUES ('$titulo_limpio', '$desc_limpio', '$fecha')";
-            
-            mysqli_query($conexion, $sql_notif);
-        }
+    if ($citaModel->crear($nombre, $fecha, $es_rec)) {
+        header("Location: ../vistas/calendario.php?msj=guardado");
+    } else {
+        header("Location: ../vistas/calendario.php?msj=error");
     }
-    
-    header("Location: ../vistas/calendario.php");
     exit();
 }
 
-// --- ELIMINAR CITA ---
-if (isset($_GET['eliminar'])) {
-    $citaModel->eliminar($_GET['eliminar']);
-    header("Location: ../vistas/calendario.php");
+// EDITAR CITA EXISTENTE
+if (isset($_POST['btn_editar'])) {
+    $id = $_POST['id_editar'];
+    $nombre = $_POST['nombre_vacuna'];
+    $fecha = $_POST['fecha_vacuna'];
+
+    if ($citaModel->editar($id, $nombre, $fecha)) {
+        header("Location: ../vistas/calendario.php?msj=editado");
+    } else {
+        header("Location: ../vistas/calendario.php?msj=error");
+    }
     exit();
 }
 
-// --- ACTUALIZAR ESTADO (Colores) ---
+// CAMBIAR ESTADO (Completada/Perdida)
 if (isset($_GET['id']) && isset($_GET['nuevo_estado'])) {
-    $citaModel->actualizarEstado($_GET['id'], $_GET['nuevo_estado']);
-    header("Location: ../vistas/calendario.php");
+    if ($citaModel->actualizarEstado($_GET['id'], $_GET['nuevo_estado'])) {
+        header("Location: ../vistas/calendario.php?msj=estado_actualizado");
+    }
+    exit();
+}
+
+// ELIMINAR CITA
+if (isset($_GET['eliminar'])) {
+    if ($citaModel->eliminar($_GET['eliminar'])) {
+        header("Location: ../vistas/calendario.php?msj=eliminado");
+    }
     exit();
 }
 ?>

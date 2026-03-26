@@ -26,7 +26,7 @@
                     Iniciar Sesión
                 </button>
                 <div class="text-center mt-3">
-                    <a href="recuperar.html" class="link-custom">¿Olvidaste tu contraseña?</a>
+                    <a href="recuperar.php" class="link-custom">¿Olvidaste tu contraseña?</a>
                 </div>
             </form>
         </div>

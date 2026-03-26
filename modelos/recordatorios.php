@@ -6,16 +6,31 @@ class Recordatorio {
         $this->db = $conexion;
     }
 
+    public function crear($titulo, $descripcion, $fecha) {
+        $sql = "INSERT INTO recordatorios (titulo, descripcion, fecha_recordatorio) VALUES (?, ?, ?)";
+        if ($stmt = $this->db->prepare($sql)) {
+            $stmt->bind_param("sss", $titulo, $descripcion, $fecha);
+            $res = $stmt->execute();
+            $stmt->close();
+            return $res;
+        }
+        return false;
+    }
+
     public function listar() {
-        // Verifica que tu tabla en MySQL se llame 'recordatorios'
         $sql = "SELECT * FROM recordatorios ORDER BY fecha_recordatorio ASC";
         return mysqli_query($this->db, $sql);
     }
 
     public function eliminar($id) {
-        $id_limpio = mysqli_real_escape_string($this->db, $id);
-        $sql = "DELETE FROM recordatorios WHERE id = '$id_limpio'";
-        return mysqli_query($this->db, $sql);
+        $sql = "DELETE FROM recordatorios WHERE id = ?";
+        if ($stmt = $this->db->prepare($sql)) {
+            $stmt->bind_param("i", $id);
+            $res = $stmt->execute();
+            $stmt->close();
+            return $res;
+        }
+        return false;
     }
 }
 ?>

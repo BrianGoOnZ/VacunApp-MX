@@ -1,21 +1,16 @@
 <?php
 session_start();
 include '../database/db.php';
-
+include '../modelos/usuarios.php'; 
 if(!isset($_SESSION['usuario'])){
     header("Location: ../index.php");
     exit();
 }
-
-$user_session = $_SESSION['usuario'];
-$query = "SELECT * FROM usuarios WHERE usuario = '$user_session'";
-$res = mysqli_query($conexion, $query);
-$datos = mysqli_fetch_assoc($res);
-
-// Formatear la fecha para que el input date la reconozca (AAAA-MM-DD)
+$usuarioModel = new Usuario($conexion);
+$datos = $usuarioModel->obtenerPerfil($_SESSION['usuario']);
+if (!$datos) { header("Location: ../index.php"); exit(); }
 $fecha_formateada = date("Y-m-d", strtotime($datos['fecha_nac'])); 
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

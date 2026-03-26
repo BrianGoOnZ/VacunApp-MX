@@ -1,5 +1,4 @@
 <?php 
-// 1. Iniciamos la sesión al principio de todo
 session_start(); 
 ?>
 <!DOCTYPE html>
@@ -12,31 +11,11 @@ session_start();
     <link rel="stylesheet" href="style/style-index.css">
 </head>
 <body>
-    <header class="vapp-navbar-main">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a href="index.php" class="logo text-decoration-none">
-                    VacunApp <span class="mx">MX</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="index.php" class="nav-link active">Inicio</a></li>
-                        <li class="nav-item"><a href="vistas/vacunas.php" class="nav-link">Vacunas</a></li>
-                        <li class="nav-item"><a href="vistas/calendario.php" class="nav-link">Calendario</a></li>
-                        <li class="nav-item"><a href="vistas/notificaciones.php" class="nav-link">Notificaciones</a></li>
-                        <li class="nav-item"><a href="vistas/centros.php" class="nav-link">Centros</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header>
+        <?php include 'vistas/componentes/navbar.php'; ?>
     </header>
-
     <main>
-        <div class="bienvenida">¡Bienvenid@ a VacunApp MX!</div>
-        
+        <div class="bienvenida">¡Bienvenid@ a VacunApp MX!</div> 
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-md-8">
@@ -47,7 +26,6 @@ session_start();
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card-info d-flex flex-column justify-content-center">
                         <?php if(isset($_SESSION['usuario'])): ?>
@@ -55,7 +33,7 @@ session_start();
                                 <h3 class="mb-2" style="color: #000291;">Hola, <br><strong><?php echo $_SESSION['usuario']; ?></strong></h3>
                                 <p class="text-muted small mb-4">Sesión activa</p>
                                 <a href="vistas/home.php" class="btn-iniciarsesion">Mi Perfil</a>
-                                <a href="vistas/logout.php" class="btn-logout">Cerrar Sesión</a>
+                                <a href="/VacunApp-MX/controladores/logout.php" class="btn-logout">Cerrar Sesión</a>
                             </div>
                         <?php else: ?>
                             <a href="vistas/login.php" class="btn-iniciarsesion">Iniciar Sesión</a>
@@ -64,7 +42,6 @@ session_start();
                     </div>
                 </div>
             </div>
-
             <div class="row g-4 mt-2 justify-content-center">
                 <div class="col-md-4 col-sm-6">
                     <div class="card-info">
@@ -86,7 +63,6 @@ session_start();
                 </div>
             </div>
         </div>
-
         <section class="info-educativa mt-5">
             <div class="container">
                 <h2 class="titulo-seccion">Información Educativa</h2>
@@ -138,7 +114,6 @@ session_start();
             </div> 
         </section>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.querySelectorAll('.btn-cerrar').forEach(boton => {

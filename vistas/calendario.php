@@ -1,48 +1,38 @@
 <?php
 session_start();
+if(!isset($_SESSION['usuario'])){ header("Location: ../index.php"); exit(); }
 include '../database/db.php';
 include '../modelos/Cita.php';
+include '../modelos/recordatorios.php'; 
+
 $citaModel = new Cita($conexion);
-$eventos = $citaModel->obtenerEventos();
+$recModel = new Recordatorio($conexion);
+
+$mes_actual = date('m');
+$anio_actual = date('Y');
+$primer_dia_mes = date('N', strtotime("$anio_actual-$mes_actual-01")); 
+$ultimo_dia_mes = date('t', strtotime("$anio_actual-$mes_actual-01"));
+
+$eventos = $citaModel->obtenerEventosCombinados();
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VacunApp MX - Calendario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style/style-index.css">
 </head>
-<body>
-
-    <header class="vapp-navbar-main">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a href="../index.php" class="logo text-decoration-none">VacunApp <span class="mx">MX</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="../index.php" class="nav-link">Inicio</a></li>
-                        <li class="nav-item"><a href="vacunas.php" class="nav-link">Vacunas</a></li>
-                        <li class="nav-item"><a href="calendario.php" class="nav-link active">Calendario</a></li>
-                        <li class="nav-item"><a href="notificaciones.php" class="nav-link">Notificaciones</a></li>
-                        <li class="nav-item"><a href="centros.php" class="nav-link">Centros</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+<body style="background-color: #f8f9fa;">
+    <?php include 'componentes/navbar.php'; ?>
 
     <main class="container mt-5">
-        <h2 class="titulo-seccion mb-4">Calendario de Citas</h2>
+        <h2 class="titulo-seccion mb-4" style="color: #000291; font-weight: bold;">Gestión de Citas</h2>
         
         <div class="row">
             <div class="col-md-4 mb-4">
-                <button class="btn-iniciarsesion w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalNuevo">
+                <button class="btn p-3 shadow-sm text-white w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalNuevo" style="background-color: #000291; border-radius: 12px; font-weight: bold;">
                     <i class="fas fa-calendar-plus me-2"></i>Nueva Cita
                 </button>
                 
@@ -50,26 +40,28 @@ $eventos = $citaModel->obtenerEventos();
                     <h6 class="fw-bold mb-3" style="color: #000291;">Próximas Entradas</h6>
                     <div style="max-height: 480px; overflow-y: auto;">
                         <?php
-                        $lista = $citaModel->listar();
-                        if ($lista && mysqli_num_rows($lista) > 0) {
-                            while($c = mysqli_fetch_assoc($lista)):
-                                $icono = $c['es_recordatorio'] ? "🔔" : "💉";
-                                $badgeClass = ($c['estado']=='completada'?'bg-success':($c['estado']=='perdida'?'bg-danger':'bg-warning text-dark'));
+                        $resTodo = $citaModel->listarTodoUnificado(); 
+                        while($item = mysqli_fetch_assoc($resTodo)):
+                            $esRec = ($item['tipo'] == 'rec');
+                            $icono = $esRec ? "🔔" : "💉";
+                            $badgeClass = ($item['estado']=='completada'?'bg-success':($item['estado']=='perdida'?'bg-danger':'bg-warning text-dark'));
+                            $urlEliminar = $esRec ? "../controladores/recordatorio_controller.php?eliminar=" : "../controladores/calendario_controller.php?eliminar=";
                         ?>
                         <div class="border-bottom mb-3 pb-2">
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="small"><?php echo $icono; ?> <strong><?php echo htmlspecialchars($c['nombre_vacuna']); ?></strong></span>
-                                <span class="badge <?php echo $badgeClass; ?>"><?php echo strtoupper($c['estado']); ?></span>
+                                <span class="small"><?php echo $icono; ?> <strong><?php echo htmlspecialchars($item['titulo']); ?></strong></span>
+                                <span class="badge <?php echo $badgeClass; ?>"><?php echo strtoupper($item['estado']); ?></span>
                             </div>
-                            <small class="text-muted d-block mt-1"><?php echo date("d/m/Y", strtotime($c['fecha'])); ?></small>
+                            <small class="text-muted d-block mt-1"><?php echo date("d/m/Y", strtotime($item['fecha'])); ?></small>
                             <div class="mt-2 d-flex gap-2">
-                                <a href="../controladores/calendario_controller.php?id=<?php echo $c['id']; ?>&nuevo_estado=completada" class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i></a>
-                                <a href="../controladores/calendario_controller.php?id=<?php echo $c['id']; ?>&nuevo_estado=perdida" class="btn btn-sm btn-outline-danger"><i class="fas fa-times"></i></a>
-                                <a href="../controladores/calendario_controller.php?eliminar=<?php echo $c['id']; ?>" class="btn btn-sm btn-outline-secondary" onclick="return confirm('¿Eliminar cita?')"><i class="fas fa-trash"></i></a>
+                                <?php if(!$esRec): ?>
+                                    <a href="../controladores/calendario_controller.php?id=<?php echo $item['id']; ?>&nuevo_estado=completada" class="btn btn-sm btn-outline-success"><i class="fas fa-check"></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEditarCita" data-id="<?php echo $item['id']; ?>" data-nombre="<?php echo $item['titulo']; ?>" data-fecha="<?php echo $item['fecha']; ?>"><i class="fas fa-edit"></i></a>
+                                <?php endif; ?>
+                                <a href="<?php echo $urlEliminar . $item['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar?')"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
-                        <?php endwhile; 
-                        } else { echo "<p class='text-muted small'>No hay citas programadas.</p>"; } ?>
+                        <?php endwhile; ?>
                     </div>
                 </div>
             </div>
@@ -77,75 +69,57 @@ $eventos = $citaModel->obtenerEventos();
             <div class="col-md-8">
                 <div class="table-responsive shadow-sm rounded">
                     <table class="table table-bordered text-center calendario-tabla bg-white mb-0">
-                        <thead class="encabezado-tabla">
+                        <thead class="encabezado-tabla" style="background-color: #000291; color: white;">
                             <tr><th>LUN</th><th>MAR</th><th>MIE</th><th>JUE</th><th>VIE</th><th>SAB</th><th>DOM</th></tr>
                         </thead>
                         <tbody>
                             <?php
-                            $dia_num = 1;
-                            for($i=0; $i<5; $i++){
+                            $dia_num = 1; $contador_celdas = 1;
+                            for($i=0; $i<6; $i++){ 
                                 echo "<tr>";
-                                for($j=0; $j<7; $j++){
-                                    if($dia_num <= 31){
-                                        $fecha_sql = "2026-03-" . str_pad($dia_num, 2, "0", STR_PAD_LEFT);
+                                for($j=1; $j<=7; $j++){
+                                    if(($contador_celdas < $primer_dia_mes) || ($dia_num > $ultimo_dia_mes)){
+                                        echo "<td class='dia-vacio' style='background-color: #f1f1f1;'></td>";
+                                    } else {
+                                        $fecha_sql = "$anio_actual-$mes_actual-" . str_pad($dia_num, 2, "0", STR_PAD_LEFT);
                                         $clase_fondo = ($dia_num % 2 == 0) ? "dia-par" : "dia-impar";
-                                        
                                         if(isset($eventos[$fecha_sql])){
                                             $e = $eventos[$fecha_sql];
                                             if($e == 'pendiente') $clase_fondo = "dia-pendiente";
                                             elseif($e == 'completada') $clase_fondo = "dia-completada";
                                             elseif($e == 'perdida') $clase_fondo = "dia-perdida";
                                         }
-
-                                        echo "<td class='$clase_fondo'>$dia_num</td>";
+                                        echo "<td class='$clase_fondo' style='height: 80px; vertical-align: middle; font-weight: bold;'>$dia_num</td>";
                                         $dia_num++;
-                                    } else {
-                                        echo "<td class='dia-vacio'></td>";
                                     }
+                                    $contador_celdas++;
                                 }
                                 echo "</tr>";
+                                if($dia_num > $ultimo_dia_mes) break;
                             }
                             ?>
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-3 d-flex justify-content-center gap-4 leyenda-contenedor shadow-sm">
-                    <small><i class="fas fa-circle text-warning"></i> Pendiente</small>
-                    <small><i class="fas fa-circle text-success"></i> Completada</small>
-                    <small><i class="fas fa-circle text-danger"></i> Perdida</small>
-                </div>
             </div>
         </div>
     </main>
 
-    <div class="modal fade modal-vapp" id="modalNuevo" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" action="../controladores/calendario_controller.php" method="POST">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-calendar-plus me-2"></i>AGENDAR CITA</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Nombre de Vacuna / Nota</label>
-                        <input type="text" name="nombre_vacuna" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Fecha Programada</label>
-                        <input type="date" name="fecha_vacuna" class="form-control" required>
-                    </div>
-                    <div class="form-check form-switch mt-3">
-                        <input class="form-check-input" type="checkbox" name="es_recordatorio" id="sw">
-                        <label class="form-check-label" for="sw">Activar Recordatorio (Notificación)</label>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="submit" name="btn_guardar" class="btn-iniciarsesion w-100">Guardar en Calendario</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <div class="modal fade" id="modalNuevo" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><form class="modal-content" action="../controladores/calendario_controller.php" method="POST"><div class="modal-header text-white" style="background-color: #000291;"><h5 class="modal-title">Nueva Cita</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="mb-3"><label class="form-label fw-bold">Nombre Vacuna</label><input type="text" name="nombre_vacuna" class="form-control" required></div><div class="mb-3"><label class="form-label fw-bold">Fecha</label><input type="date" name="fecha_vacuna" class="form-control" required></div></div><div class="modal-footer border-0"><button type="submit" name="btn_guardar" class="btn text-white w-100" style="background-color: #000291;">Guardar</button></div></form></div></div>
+
+    <div class="modal fade" id="modalEditarCita" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><form class="modal-content" action="../controladores/calendario_controller.php" method="POST"><div class="modal-header text-white" style="background-color: #0d6efd;"><h5 class="modal-title">Editar Cita</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" name="id_editar" id="edit_id"><div class="mb-3"><label class="form-label fw-bold">Nombre Vacuna</label><input type="text" name="nombre_vacuna" id="edit_nombre" class="form-control" required></div><div class="mb-3"><label class="form-label fw-bold">Fecha</label><input type="date" name="fecha_vacuna" id="edit_fecha" class="form-control" required></div></div><div class="modal-footer border-0"><button type="submit" name="btn_editar" class="btn btn-primary w-100">Guardar Cambios</button></div></form></div></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const modalEditar = document.getElementById('modalEditarCita');
+        if (modalEditar) {
+            modalEditar.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                modalEditar.querySelector('#edit_id').value = button.getAttribute('data-id');
+                modalEditar.querySelector('#edit_nombre').value = button.getAttribute('data-nombre');
+                modalEditar.querySelector('#edit_fecha').value = button.getAttribute('data-fecha');
+            });
+        }
+    </script>
 </body>
 </html>
