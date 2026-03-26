@@ -24,10 +24,10 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a href="index.php" class="nav-link active">Inicio</a></li>
-                        <li class="nav-item"><a href="vistas/vacunas.html" class="nav-link">Vacunas</a></li>
-                        <li class="nav-item"><a href="vistas/calendario.html" class="nav-link">Calendario</a></li>
-                        <li class="nav-item"><a href="vistas/notificaciones.html" class="nav-link">Notificaciones</a></li>
-                        <li class="nav-item"><a href="vistas/centros.html" class="nav-link">Centros</a></li>
+                        <li class="nav-item"><a href="vistas/vacunas.php" class="nav-link">Vacunas</a></li>
+                        <li class="nav-item"><a href="vistas/calendario.php" class="nav-link">Calendario</a></li>
+                        <li class="nav-item"><a href="vistas/notificaciones.php" class="nav-link">Notificaciones</a></li>
+                        <li class="nav-item"><a href="vistas/centros.php" class="nav-link">Centros</a></li>
                     </ul>
                 </div>
             </div>
