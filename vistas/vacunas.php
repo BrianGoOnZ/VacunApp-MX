@@ -161,6 +161,35 @@ $conn = new mysqli("localhost", "root", "abril123", "vacunapp");
         </div>
     </div>
 </div>
+<!-- MODAL RECORDATORIO -->
+<div class="modal fade" id="modalRecordatorio" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-vapp">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">NUEVO RECORDATORIO</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Asegúrate de que el action sea el nombre de tu archivo PHP -->
+                <form action="guardar_recordatorio.php" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input type="text" name="titulo" class="form-control" placeholder="Ej: Refuerzo Influenza" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha del Recordatorio</label>
+                        <input type="date" name="fecha_recordatorio" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nota adicional</label>
+                        <textarea name="descripcion" class="form-control" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="btn-iniciarsesion w-100">Crear Recordatorio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
