@@ -1,137 +1,202 @@
+<?php
+session_start();
+$conn = new mysqli('localhost', 'root', 'abril123', 'test');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD_VacunApp</title>
+    <title>VacunApp MX - Mis Vacunas</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Un poco de estilo para que los modales no se vean tan simples */
-        .modal-custom { position: fixed; top: 20%; left: 30%; background: white; border: 2px solid #000291; padding: 20px; z-index: 1000; width: 400px; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; margin: 0; }
+        
+        /* NAVBAR SUPERIOR AZUL */
+        .navbar-vacunapp {
+            background-color: #000291;
+            color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .navbar-vacunapp .logo { font-size: 24px; font-weight: bold; }
+        .navbar-vacunapp .menu a { color: white; margin: 0 15px; text-decoration: none; font-weight: 500; }
+        .navbar-vacunapp .user-icon { font-size: 28px; border: 2px solid white; border-radius: 50%; padding: 5px; }
+
+        /* CONTENEDOR DE LA PANTALLA */
+        .main-content {
+            display: flex;
+            padding: 40px;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        /* COLUMNA IZQUIERDA: BOTONES AZULES */
+        .side-menu { width: 220px; }
+        .btn-vapp {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: left;
+            font-size: 15px;
+            box-shadow: 0 4px 0 #0056b3; /* Efecto 3D de tu imagen */
+            transition: 0.2s;
+        }
+        .btn-vapp:active { transform: translateY(3px); box-shadow: 0 1px 0 #0056b3; }
+
+        /* COLUMNA DERECHA: TABLA DE COLORES */
+        .table-container { flex-grow: 1; max-width: 900px; background: white; border-radius: 8px; overflow: hidden; }
+        .v-table { width: 100%; border-collapse: collapse; }
+        .v-table th {
+            background-color: #7297c1; /* Azul acero del prototipo */
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #666;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .v-table td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+            height: 50px;
+            background-color: #fff;
+        }
+        /* La primera columna */
+        .col-vacuna { background-color: #94b8d7 !important; font-weight: bold; width: 150px; }
+
+        /* MODAL PERSONALIZADO */
+        .v-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #000291;
+            z-index: 2000;
+            width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Administrador de Vacunas - VacunApp MX</h1>
-    <button class="btn btn-primary" onclick="mostrarModal('modalAgregarVacuna')">Agregar nueva vacuna</button>
-    <br><br>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Vacuna</th>
-                <th>Enfermedad</th>
-                <th>Dosis</th>
-                <th>Fecha</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="vacunasTableBody">
-            <!-- Aquí se cargarán las vacunas vía AJAX -->
-        </tbody>
-    </table>
+<div class="navbar-vacunapp">
+    <div class="logo">VacunApp MX</div>
+    <div class="menu">
+        <a href="home.php">Inicio</a>
+        <a href="vacunas.php">Vacunas</a>
+        <a href="calendario.php">Calendario</a>
+        <a href="centros.php">Escanear</a>
+    </div>
+    <div class="user-icon"><i class="glyphicon glyphicon-user"></i></div>
 </div>
 
-<!-- MODAL EDITAR -->
-<div id="modalEditar" class="modal-custom" style="display:none;">
-    <h3>Editar Vacuna</h3>
-    ID: <span id="idEditar"></span><br><br>
-    Vacuna: <input type="text" id="nombreEditar" class="form-control"><br>
-    Enfermedad: <input type="text" id="enfermedadEditar" class="form-control"><br>
-    Dosis: <input type="text" id="dosisEditar" class="form-control"><br>
-    Fecha: <input type="date" id="fechaEditar" class="form-control"><br>
+<div class="main-content">
+    <!-- BOTONES LATERALES -->
+    <div class="side-menu">
+        <button class="btn-vapp" onclick="abrirModal('modalVacuna')">
+            + Añadir vacuna
+        </button>
+        <button class="btn-vapp" onclick="abrirModal('modalCita')">
+            + Recordatorio
+        </button>
+    </div>
 
-    <button class="btn btn-success" onclick="guardarEdicion()">Guardar Cambios</button>
-    <button class="btn btn-danger" onclick="cerrarModal('modalEditar')">Cancelar</button>
+    <!-- TABLA DE VACUNAS -->
+    <div class="table-container">
+        <table class="v-table">
+            <thead>
+                <tr>
+                    <th class="col-vacuna">Vacuna</th>
+                    <th>Enfermedad que previene</th>
+                    <th>Dosis</th>
+                    <th>Edad y Frecuencia</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="vacunasTableBody">
+                <!-- Se llena con AJAX -->
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- MODAL ELIMINAR -->
-<div id="modalEliminar" class="modal-custom" style="display:none;">
-    <h3>Confirmar eliminación</h3>
-    <p>¿Estás seguro de que deseas eliminar esta vacuna? ID: <span id="idEliminar"></span></p>
-    <button class="btn btn-danger" onclick="eliminarVacuna()">Eliminar</button>
-    <button class="btn btn-default" onclick="cerrarModal('modalEliminar')">Cancelar</button>
+<!-- MODAL PARA RECORDATORIO (AQUÍ ESTÁ LA UNIÓN) -->
+<div id="modalCita" class="v-modal">
+    <h3 style="color:#000291">Nuevo Recordatorio</h3>
+    <form action="../php/guardar_cita.php" method="POST">
+        <label>¿Para quién es?</label>
+        <select name="id_usuario" class="form-control" required>
+            <?php
+            $res = $conn->query("SELECT id_usuario, username FROM usuarios");
+            while($u = $res->fetch_assoc()){
+                echo "<option value='{$u['id_usuario']}'>{$u['username']}</option>";
+            }
+            ?>
+        </select><br>
+
+        <label>¿Qué vacuna toca?</label>
+        <select name="id_vacuna" class="form-control" required>
+            <?php
+            $resV = $conn->query("SELECT id, nombre_vacuna FROM vacunas");
+            while($v = $resV->fetch_assoc()){
+                echo "<option value='{$v['id']}'>{$v['nombre_vacuna']}</option>";
+            }
+            ?>
+        </select><br>
+
+        <label>Fecha programada:</label>
+        <input type="date" name="fecha_cita" class="form-control" required><br>
+
+        <button type="submit" class="btn btn-primary btn-block">Crear Cita</button>
+        <button type="button" onclick="cerrarModal('modalCita')" class="btn btn-link btn-block">Cancelar</button>
+    </form>
 </div>
 
-<!-- MODAL AGREGAR -->
-<div id="modalAgregarVacuna" class="modal-custom" style="display:none;">
-    <h3>Agregar Vacuna</h3>
-    <form action="guardar_vacuna.php" method="post">
-        <input type="text" name="nombre" placeholder="Nombre Vacuna" class="form-control" required><br>
+<!-- MODAL PARA AÑADIR VACUNA (CATÁLOGO) -->
+<div id="modalVacuna" class="v-modal">
+    <h3 style="color:#000291">Añadir al Catálogo</h3>
+    <form action="../php/guardar_vacuna.php" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre de Vacuna" class="form-control" required><br>
         <input type="text" name="enfermedad" placeholder="Enfermedad" class="form-control"><br>
-        <input type="text" name="dosis" placeholder="Dosis (Ej. 1ra)" class="form-control"><br>
+        <input type="text" name="dosis" placeholder="Dosis" class="form-control"><br>
         <input type="date" name="fecha" class="form-control"><br>
-        <button type="submit" class="btn btn-primary">Añadir</button>
-        <button type="button" class="btn btn-default" onclick="cerrarModal('modalAgregarVacuna')">Cerrar</button>
+        <button type="submit" class="btn btn-success btn-block">Guardar Vacuna</button>
+        <button type="button" onclick="cerrarModal('modalVacuna')" class="btn btn-link btn-block">Cerrar</button>
     </form>
 </div>
 
 <script>
-function actualizarLista(){
-    $.ajax({
-        url: 'cargar_vacunas.php',
-        type: 'GET',
-        success: function(response){
-            $('#vacunasTableBody').html(response);
-        }
+    function cargarTabla() {
+        $.ajax({
+            url: '../php/cargar_vacunas.php',
+            type: 'GET',
+            success: function(data) {
+                $('#vacunasTableBody').html(data);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        cargarTabla();
     });
-}
 
-$(document).ready(function(){
-    actualizarLista();
-});
-
-function mostrarModal(id){ document.getElementById(id).style.display = 'block'; }
-function cerrarModal(id){ document.getElementById(id).style.display = 'none'; }
-
-function mostrarEditar(id, nombre, enfermedad, dosis, fecha){
-    document.getElementById('idEditar').innerText = id;
-    document.getElementById('nombreEditar').value = nombre;
-    document.getElementById('enfermedadEditar').value = enfermedad;
-    document.getElementById('dosisEditar').value = dosis;
-    document.getElementById('fechaEditar').value = fecha;
-    mostrarModal('modalEditar');
-}
-
-function mostrarEliminar(id){
-    document.getElementById('idEliminar').innerText = id;
-    mostrarModal('modalEliminar');
-}
-
-function guardarEdicion(){
-    var id = document.getElementById('idEditar').innerText;
-    var nombre = document.getElementById('nombreEditar').value;
-    var enfermedad = document.getElementById('enfermedadEditar').value;
-    var dosis = document.getElementById('dosisEditar').value;
-    var fecha = document.getElementById('fechaEditar').value;
-
-    $.ajax({
-        type: 'POST',
-        url: 'editar_vacuna.php',
-        data: {id, nombre, enfermedad, dosis, fecha},
-        success: function(response){
-            alert(response);
-            cerrarModal('modalEditar');
-            actualizarLista();
-        }
-    });
-}
-
-function eliminarVacuna(){
-    var id = document.getElementById('idEliminar').innerText;
-    $.ajax({
-        type: 'POST',
-        url: 'eliminar_vacuna.php',
-        data: {id_vacuna: id},
-        success: function(response){
-            alert(response);
-            cerrarModal('modalEliminar');
-            actualizarLista();
-        }
-    });
-}
+    function abrirModal(id) { document.getElementById(id).style.display = 'block'; }
+    function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
 </script>
+
 </body>
 </html>
