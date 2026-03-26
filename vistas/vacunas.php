@@ -100,16 +100,28 @@ $conn = new mysqli("localhost", "root", "abril123", "vacunapp");
                         <th>FECHA</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-azul-claro">Hepatitis B</td>
-                        <td>Infección por Hepatitis B</td>
-                        <td>Primera</td>
-                        <td>Recién nacido</td>
-                        <td>2026-03-25</td>
-                    </tr>
-                    <!-- Repetir filas según necesites -->
-                </tbody>
+                    <tbody>
+    <?php
+    // Usamos la conexión $conn que creaste en la línea 3
+    $consulta = "SELECT * FROM vacunas";
+    $resultado = $conn->query($consulta);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while($fila = $resultado->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td class='col-azul-claro'>" . htmlspecialchars($fila['nombre_vacuna']) . "</td>";
+            echo "<td>" . htmlspecialchars($fila['enfermedad']) . "</td>";
+            echo "<td>" . htmlspecialchars($fila['dosis']) . "</td>";
+            // Si no tienes la columna edad_frecuencia, puedes dejar un texto fijo o usar otra columna
+            echo "<td>" . (isset($fila['edad_frecuencia']) ? htmlspecialchars($fila['edad_frecuencia']) : 'Pendiente') . "</td>";
+            echo "<td>" . htmlspecialchars($fila['fecha']) . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='5' class='text-center'>Aún no hay vacunas registradas</td></tr>";
+    }
+    ?>
+</tbody>
             </table>
         </div>
     </div>
