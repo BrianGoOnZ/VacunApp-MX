@@ -136,7 +136,7 @@ $conn = new mysqli("localhost", "root", "abril123", "vacunapp");
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="guardar_vacuna.php" method="POST">
+                <form action="cargar_vacunas.php" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Nombre de la Vacuna</label>
                         <input type="text" name="vacuna" class="form-control" required>
