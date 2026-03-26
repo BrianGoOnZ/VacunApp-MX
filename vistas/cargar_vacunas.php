@@ -1,6 +1,9 @@
 <?php
-// 1. CONEXIÓN (Usando tus datos: abril123)
-$conn = new mysqli("localhost", "root", "abril123", "vacunapp");
+// 1. Configuración de la conexión (Asegúrate de que el nombre de la BD sea correcto)
+$servidor = "localhost";
+$usuario  = "root";
+$password = "";
+$base_datos = "vacunapp"; 
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);

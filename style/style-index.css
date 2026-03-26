@@ -259,3 +259,116 @@
     background-color: #000291;
     color: white;
 }
+
+/* --- ESTILOS PARA CRUD VACUNAS Y TABLAS --- */
+.bienvenida-seccion { 
+    font-size: 28px; 
+    font-weight: bold; 
+    color: #000291; 
+    margin-top: 20px; 
+    text-align: center; 
+    text-transform: uppercase; 
+}
+
+.tabla-vapp { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background-color: white; 
+    margin-top: 20px; 
+}
+
+.tabla-vapp thead th {
+    background-color: #7294c0; 
+    color: #000291;
+    text-align: center;
+    padding: 15px 10px;
+    border: 1px solid #000291;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.tabla-vapp td { 
+    border: 1px solid #000291; 
+    height: 50px; 
+    background-color: white; 
+    text-align: center; 
+    vertical-align: middle; 
+}
+
+.col-azul-claro { 
+    background-color: #9dbcd4 !important; 
+    font-weight: bold; 
+}
+
+/* Modales con estilo VacunApp */
+.modal-vapp .modal-header { 
+    background-color: #000291; 
+    color: white; 
+}
+
+.modal-vapp .form-label { 
+    color: #000291; 
+    font-weight: bold; 
+}
+
+.modal-vapp .form-control { 
+    border: 2px solid #9dbcd4; 
+    border-radius: 8px; 
+}
+
+/* Ajustes para que la tabla no se vea pegada */
+.tabla-vapp th, .tabla-vapp td {
+    padding: 12px 15px !important; /* Espacio interno para que el texto no toque las líneas */
+    vertical-align: middle;
+}
+
+/* Espaciado específico para los iconos de acción */
+.contenedor-acciones {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.accion-btn {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+.accion-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Colores alternados para la paleta oficial */
+.dia-par { 
+    background-color: #f0f7ff !important; /* Un celeste muy suave */
+    color: #000291; 
+}
+.dia-impar { 
+    background-color: #ffffff !important; 
+    color: #000291; 
+}
+
+/* Efecto al pasar el mouse */
+.calendario-tabla td:hover:not(.dia-vacio) {
+    background-color: #4ABEEF !important; /* El celeste de tu logo */
+    color: white !important;
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+/* Asegurar que el texto sea legible */
+.calendario-tabla td {
+    transition: all 0.2s ease;
+}
+
+.titulo-seccion { 
+    color: #000291; 
+    font-weight: bold; 
+    text-align: center; /* ESTA ES LA CLAVE */
+    text-transform: uppercase; 
+    margin-top: 20px; 
+}
+
+.dia-pendiente { background-color: #ffeb3b !important; color: #000291 !important; border: 2px solid #fbc02d !important; }
+.dia-completada { background-color: #4caf50 !important; color: white !important; }
+.dia-perdida { background-color: #f44336 !important; color: white !important; }
