@@ -4,15 +4,12 @@ if(!isset($_SESSION['usuario'])){ header("Location: ../index.php"); exit(); }
 include '../database/db.php';
 include '../modelos/Cita.php';
 include '../modelos/recordatorios.php'; 
-
 $citaModel = new Cita($conexion);
 $recModel = new Recordatorio($conexion);
-
 $mes_actual = date('m');
 $anio_actual = date('Y');
 $primer_dia_mes = date('N', strtotime("$anio_actual-$mes_actual-01")); 
 $ultimo_dia_mes = date('t', strtotime("$anio_actual-$mes_actual-01"));
-
 $eventos = $citaModel->obtenerEventosCombinados();
 ?>
 <!DOCTYPE html>

@@ -14,7 +14,6 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card-custom">
             <h2 class="text-center mb-4">Iniciar Sesión</h2>
-            
             <form action="../controladores/login_process.php" method="POST">
                 <div class="mb-3">
                     <input type="text" name="usuario" class="form-control" placeholder="Usuario" required>

@@ -72,7 +72,6 @@ $recModel = new Recordatorio($conexion);
                                                 data-bs-toggle='modal' data-bs-target='#modalEditarVacuna'>
                                                 <i class='fas fa-edit'></i>
                                             </button>
-
                                             <a href='../controladores/eliminar_vacuna.php?id={$v['id']}' class='text-danger ms-2' onclick='return confirm(\"¿Borrar vacuna?\")'>
                                                 <i class='fas fa-trash'></i>
                                             </a>
@@ -84,7 +83,6 @@ $recModel = new Recordatorio($conexion);
                         </table>
                     </div>
                 </div>
-
                 <div class="card border-0 shadow-sm" style="border-radius: 15px;">
                     <div class="card-header bg-white py-3"><h5 class="mb-0 fw-bold" style="color: #007bff;">Próximos Recordatorios</h5></div>
                     <div class="table-responsive">
@@ -106,7 +104,6 @@ $recModel = new Recordatorio($conexion);
                                                 data-bs-toggle='modal' data-bs-target='#modalEditarRecordatorio'>
                                                 <i class='fas fa-edit'></i>
                                             </button>
-
                                             <a href='../controladores/recordatorio_controller.php?eliminar={$r['id']}' class='text-danger ms-2' onclick='return confirm(\"¿Borrar?\")'>
                                                 <i class='fas fa-trash-alt'></i>
                                             </a>
@@ -121,12 +118,10 @@ $recModel = new Recordatorio($conexion);
             </div>
         </div>
     </main>
-
     <?php include 'componentes/modales/modal_agregar.php'; ?>
     <?php include 'componentes/modales/modal_recordatorio.php'; ?>
     <?php include 'componentes/modales/modal_editar_recordatorio.php'; ?>
     <?php include 'componentes/modales/modal_editar_vacuna.php'; ?>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // JS PARA RECORDATORIOS
@@ -139,8 +134,6 @@ $recModel = new Recordatorio($conexion);
                     document.getElementById('edit_fecha').value = this.getAttribute('data-fecha');
                 });
             });
-
-            // JS PARA VACUNAS
             const botonesEditarVac = document.querySelectorAll('.btn-editar-vacuna');
             botonesEditarVac.forEach(boton => {
                 boton.addEventListener('click', function() {

@@ -28,11 +28,9 @@ if (!$datos) { header("Location: ../index.php"); exit(); }
                  style="width: 160px; height: 160px; object-fit: cover; border: 4px solid #001a57;">
             <div class="text-start mb-4 px-3">
                 <p class="mb-1 text-muted small text-uppercase fw-bold">Nombre Completo</p>
-                <p class="mb-3 fs-5"><?php echo $datos['nombre'] . " " . $datos['apellido_pat'] . " " . $datos['apellido_mat']; ?></p>
-                
+                <p class="mb-3 fs-5"><?php echo $datos['nombre'] . " " . $datos['apellido_pat'] . " " . $datos['apellido_mat']; ?></p> 
                 <p class="mb-1 text-muted small text-uppercase fw-bold">CURP</p>
                 <p class="mb-3 fs-5"><?php echo $datos['curp']; ?></p>
-                
                 <p class="mb-1 text-muted small text-uppercase fw-bold">Nombre de Usuario</p>
                 <p class="mb-3 fs-5"><?php echo $datos['usuario']; ?></p>
             </div>

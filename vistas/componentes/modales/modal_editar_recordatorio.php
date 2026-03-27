@@ -8,7 +8,6 @@
             <form action="../controladores/recordatorio_controller.php" method="POST">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="edit_id">
-
                     <div class="mb-3">
                         <label class="form-label">Título</label>
                         <input type="text" name="titulo" id="edit_titulo" class="form-control" required>
