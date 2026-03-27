@@ -1,0 +1,22 @@
+[33meb53ab0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: rebase (abort): returning to refs/heads/main
+[33meb53ab0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: rebase (abort): returning to refs/heads/main
+[33mdeda093[m HEAD@{2}: commit (amend): Implementación de vistas de Perfil y Centros con estilos unificados y corrección de rutas
+[33m0825161[m HEAD@{3}: commit: Implementación de vistas de Perfil y Centros con estilos unificados y corrección de rutas
+[33m1aeec7a[m HEAD@{4}: commit: Implementación de vistas de Perfil y Centros con estilos unificados y corrección de rutas
+[33m8ac1214[m HEAD@{5}: commit: Sincronización automática de Citas con Notificaciones y limpieza de rutas en MVC
+[33m0ca7072[m HEAD@{6}: commit: Implementación de Notificaciones con arquitectura MVC y diseño unificado
+[33mdd88465[m HEAD@{7}: commit (merge): Merge: Sincronizando estilos finales del calendario
+[33meb53ab0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{8}: checkout: moving from c4a22ab6978751f9c40a8c8e4e0e83d72fde8187 to main
+[33mc4a22ab[m HEAD@{9}: commit: Calendario funcional con MVC y diseño de paleta de colores alternada
+[33mb7791c2[m HEAD@{10}: pull origin main --rebase (start): checkout b7791c2f6527890455e19d2efe28fe8476ce7fb5
+[33meb53ab0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{11}: commit: Refactor: CRUD de vacunas completo con arquitectura MVC y estilos unificados
+[33m992d4ac[m HEAD@{12}: pull origin main: Fast-forward
+[33mf1844c4[m HEAD@{13}: commit: Diseño unificado de Perfil y Edición con Navbar oficial y Logout funcional
+[33m432f33e[m HEAD@{14}: commit: Interfaz unificada: Perfil con Nav oficial, estilos corregidos y Logout funcional
+[33m500ba01[m HEAD@{15}: commit: CRUD de usuarios completo: Perfil con foto, edición de datos y corrección de fecha
+[33mdca880e[m HEAD@{16}: commit: Conexión a BD, corrección de registro y lógica de sesión en index.php
+[33ma03c34d[m HEAD@{17}: reset: moving to a03c34d
+[33ma03c34d[m HEAD@{18}: commit: Estructura final: controladores, style y vistas en minúsculas
+[33mc16ade2[m HEAD@{19}: commit: Reorganización de carpetas: nombres
+[33mb86df29[m HEAD@{20}: commit: Reorganización de carpetas: moviendo archivos a vistas
+[33mb8acb37[m HEAD@{21}: clone: from https://github.com/briangoonz/VacunApp-MX.git

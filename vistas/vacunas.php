@@ -22,10 +22,13 @@ $recModel = new Recordatorio($conexion);
 
     <main class="container mt-5">
         <?php if(isset($_GET['msj'])): ?>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 10px;">
                 <?php 
                     if($_GET['msj']=='rec_guardado') echo "¡Recordatorio añadido!";
                     if($_GET['msj']=='rec_eliminado') echo "Recordatorio borrado.";
+                    if($_GET['msj']=='rec_actualizado') echo "¡Recordatorio actualizado con éxito!"; 
+                    if($_GET['msj']=='vac_guardada') echo "¡Vacuna registrada con éxito!";
+                    if($_GET['msj']=='vac_actualizada') echo "¡Datos de la vacuna actualizados!";
                 ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
@@ -53,8 +56,27 @@ $recModel = new Recordatorio($conexion);
                                 <?php
                                 $resV = $vacunaModel->listar();
                                 while($v = mysqli_fetch_assoc($resV)){
-                                    echo "<tr><td>{$v['nombre_vacuna']}</td><td>{$v['dosis']}</td><td>{$v['fecha']}</td>
-                                    <td><a href='../controladores/eliminar_vacuna.php?id={$v['id']}' class='text-danger'><i class='fas fa-trash'></i></a></td></tr>";
+                                    echo "<tr>
+                                        <td>{$v['nombre_vacuna']}</td>
+                                        <td>{$v['dosis']}</td>
+                                        <td>".date("d/m/Y", strtotime($v['fecha']))."</td>
+                                        <td>
+                                            <button class='btn btn-sm text-primary btn-editar-vacuna' 
+                                                data-id='{$v['id']}' 
+                                                data-vacuna='{$v['nombre_vacuna']}' 
+                                                data-enfermedad='{$v['enfermedad']}' 
+                                                data-dosis='{$v['dosis']}' 
+                                                data-frecuencia='{$v['frecuencia']}' 
+                                                data-fecha='{$v['fecha']}'
+                                                data-bs-toggle='modal' data-bs-target='#modalEditarVacuna'>
+                                                <i class='fas fa-edit'></i>
+                                            </button>
+
+                                            <a href='../controladores/eliminar_vacuna.php?id={$v['id']}' class='text-danger ms-2' onclick='return confirm(\"¿Borrar vacuna?\")'>
+                                                <i class='fas fa-trash'></i>
+                                            </a>
+                                        </td>
+                                    </tr>";
                                 }
                                 ?>
                             </tbody>
@@ -74,7 +96,20 @@ $recModel = new Recordatorio($conexion);
                                     echo "<tr>
                                         <td><strong>{$r['titulo']}</strong><br><small>{$r['descripcion']}</small></td>
                                         <td>".date("d/m/Y", strtotime($r['fecha_recordatorio']))."</td>
-                                        <td><a href='../controladores/recordatorio_controller.php?eliminar={$r['id']}' class='text-danger' onclick='return confirm(\"¿Borrar?\")'><i class='fas fa-trash-alt'></i></a></td>
+                                        <td>
+                                            <button class='btn btn-sm text-primary btn-editar-rec' 
+                                                data-id='{$r['id']}' 
+                                                data-titulo='{$r['titulo']}' 
+                                                data-desc='{$r['descripcion']}' 
+                                                data-fecha='{$r['fecha_recordatorio']}'
+                                                data-bs-toggle='modal' data-bs-target='#modalEditarRecordatorio'>
+                                                <i class='fas fa-edit'></i>
+                                            </button>
+
+                                            <a href='../controladores/recordatorio_controller.php?eliminar={$r['id']}' class='text-danger ms-2' onclick='return confirm(\"¿Borrar?\")'>
+                                                <i class='fas fa-trash-alt'></i>
+                                            </a>
+                                        </td>
                                     </tr>";
                                 }
                                 ?>
@@ -88,6 +123,36 @@ $recModel = new Recordatorio($conexion);
 
     <?php include 'componentes/modales/modal_agregar.php'; ?>
     <?php include 'componentes/modales/modal_recordatorio.php'; ?>
+    <?php include 'componentes/modales/modal_editar_recordatorio.php'; ?>
+    <?php include 'componentes/modales/modal_editar_vacuna.php'; ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JS PARA RECORDATORIOS
+            const botonesEditarRec = document.querySelectorAll('.btn-editar-rec');
+            botonesEditarRec.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    document.getElementById('edit_id').value = this.getAttribute('data-id');
+                    document.getElementById('edit_titulo').value = this.getAttribute('data-titulo');
+                    document.getElementById('edit_descripcion').value = this.getAttribute('data-desc'); 
+                    document.getElementById('edit_fecha').value = this.getAttribute('data-fecha');
+                });
+            });
+
+            // JS PARA VACUNAS
+            const botonesEditarVac = document.querySelectorAll('.btn-editar-vacuna');
+            botonesEditarVac.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    document.getElementById('edit_vac_id').value = this.getAttribute('data-id');
+                    document.getElementById('edit_vac_nombre').value = this.getAttribute('data-vacuna');
+                    document.getElementById('edit_vac_enfermedad').value = this.getAttribute('data-enfermedad');
+                    document.getElementById('edit_vac_dosis').value = this.getAttribute('data-dosis');
+                    document.getElementById('edit_vac_frecuencia').value = this.getAttribute('data-frecuencia');
+                    document.getElementById('edit_vac_fecha').value = this.getAttribute('data-fecha');
+                });
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
