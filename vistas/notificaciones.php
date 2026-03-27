@@ -21,24 +21,8 @@ $resultado = $recordatorioModel->listar();
     <link rel="stylesheet" href="../style/style-index.css">
 </head>
 <body style="background-color: #f4f6fb;">
-    <header class="vapp-navbar-main">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a href="../index.php" class="logo text-decoration-none">VacunApp <span class="mx">MX</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="../index.php" class="nav-link">Inicio</a></li>
-                        <li class="nav-item"><a href="vacunas.php" class="nav-link">Vacunas</a></li>
-                        <li class="nav-item"><a href="calendario.php" class="nav-link">Calendario</a></li>
-                        <li class="nav-item"><a href="notificaciones.php" class="nav-link active">Notificaciones</a></li>
-                        <li class="nav-item"><a href="centros.php" class="nav-link">Centros</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header>
+        <?php include '../vistas/componentes/navbar.php'; ?>
     </header>
     <main class="container py-5">
         <h2 class="titulo-seccion mb-4 text-center">Mis Notificaciones</h2>

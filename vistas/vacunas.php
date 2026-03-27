@@ -18,8 +18,9 @@ $recModel = new Recordatorio($conexion);
     <link rel="stylesheet" href="../style/style-index.css">
 </head>
 <body style="background-color: #f8f9fa;">
-    <?php include 'componentes/navbar.php'; ?>
-
+    <header>
+        <?php include '../vistas/componentes/navbar.php'; ?>
+    </header>
     <main class="container mt-5">
         <?php if(isset($_GET['msj'])): ?>
             <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 10px;">
