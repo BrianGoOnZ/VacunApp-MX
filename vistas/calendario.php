@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-// 1. Seguridad: Si no hay sesión, mandamos al index
-if(!isset($_SESSION['usuario']) || !isset($_SESSION['id_usuario'])){ 
-    header("Location: ../index.php"); 
-    exit(); 
-}
+include 'componentes/auth.php'; 
 
 include '../database/db.php';
 include '../modelos/Cita.php';
