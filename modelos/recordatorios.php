@@ -4,20 +4,37 @@ class Recordatorio {
     public function __construct($conexion) {
         $this->db = $conexion;
     }
-    public function crear($titulo, $descripcion, $fecha) {
-        $sql = "INSERT INTO recordatorios (titulo, descripcion, fecha_recordatorio) VALUES (?, ?, ?)";
+    public function crear($id_usuario, $titulo, $descripcion, $fecha) {
+        // Usamos sentencias preparadas para que no haya errores de formato
+        $sql = "INSERT INTO recordatorios (id_usuario, titulo, descripcion, fecha_recordatorio) VALUES (?, ?, ?, ?)";
+        
         if ($stmt = $this->db->prepare($sql)) {
-            $stmt->bind_param("sss", $titulo, $descripcion, $fecha);
-            $res = $stmt->execute();
+            // "i" es para el ID del usuario (entero)
+            // "sss" son para título, descripción y fecha (strings)
+            $stmt->bind_param("isss", $id_usuario, $titulo, $descripcion, $fecha);
+            $resultado = $stmt->execute();
             $stmt->close();
-            return $res;
+            return $resultado;
         }
         return false;
     }
-    public function listar() {
-        $sql = "SELECT * FROM recordatorios ORDER BY fecha_recordatorio ASC";
-        return mysqli_query($this->db, $sql);
+
+    public function listarPorUsuario($id_usuario) {
+        // Usamos 'AS' para que aunque en la BD se llame diferente, PHP vea 'titulo'
+        // REVISA: Si en tu tabla es 'nombre', cámbialo abajo
+        $sql = "SELECT id, titulo, descripcion, fecha_recordatorio 
+                FROM recordatorios 
+                WHERE id_usuario = ? 
+                ORDER BY fecha_recordatorio ASC";
+                
+        if ($stmt = $this->db->prepare($sql)) {
+            $stmt->bind_param("i", $id_usuario);
+            $stmt->execute();
+            return $stmt->get_result();
+        }
+        return false;
     }
+
     public function eliminar($id) {
         $sql = "DELETE FROM recordatorios WHERE id = ?";
         if ($stmt = $this->db->prepare($sql)) {

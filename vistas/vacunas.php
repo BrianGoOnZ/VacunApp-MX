@@ -1,12 +1,26 @@
 <?php
-session_start();
-if(!isset($_SESSION['usuario'])){ header("Location: ../index.php"); exit(); }
+session_start(); // 1. Primero iniciamos sesión siempre
+
+// 2. Verificamos si hay usuario (seguridad)
+if(!isset($_SESSION['usuario'])){ 
+    header("Location: ../index.php"); 
+    exit(); 
+}
+
+// 3. Incluimos la base de datos y los modelos
 include '../database/db.php'; 
 include '../modelos/Vacuna.php';
 include '../modelos/recordatorios.php';
 
+// 4. Instanciamos los modelos
 $vacunaModel = new Vacuna($conexion);
 $recModel = new Recordatorio($conexion);
+
+// 5. AHORA SÍ sacamos el ID y filtramos (esto va después de todo lo anterior)
+$id_logueado = $_SESSION['id_usuario']; 
+
+$resV = $vacunaModel->listarPorUsuario($id_logueado);
+$resR = $recModel->listarPorUsuario($id_logueado);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,7 +69,6 @@ $recModel = new Recordatorio($conexion);
                             <thead class="table-light"><tr><th>Vacuna</th><th>Dosis</th><th>Fecha</th><th>Acciones</th></tr></thead>
                             <tbody>
                                 <?php
-                                $resV = $vacunaModel->listar();
                                 while($v = mysqli_fetch_assoc($resV)){
                                     echo "<tr>
                                         <td>{$v['nombre_vacuna']}</td>
@@ -90,7 +103,6 @@ $recModel = new Recordatorio($conexion);
                             <thead class="table-light"><tr><th>Título</th><th>Fecha</th><th>Acciones</th></tr></thead>
                             <tbody>
                                 <?php
-                                $resR = $recModel->listar();
                                 while($r = mysqli_fetch_assoc($resR)){
                                     echo "<tr>
                                         <td><strong>{$r['titulo']}</strong><br><small>{$r['descripcion']}</small></td>

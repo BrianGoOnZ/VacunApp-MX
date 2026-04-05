@@ -1,14 +1,16 @@
 <?php
 session_start();
+// Seguridad: Si no hay sesión, al index
+if(!isset($_SESSION['usuario'])){ header("Location: ../index.php"); exit(); }
+
 include '../database/db.php';
-$ruta_m = dirname(__DIR__) . '/modelos/recordatorios.php';
-if (file_exists($ruta_m)) {
-    include_once $ruta_m;
-} else {
-    die("Error Crítico: No se encontró el archivo físico en: " . $ruta_m);
-}
-$recordatorioModel = new Recordatorio($conexion);
-$resultado = $recordatorioModel->listar();
+include '../modelos/recordatorios.php';
+
+$recModel = new Recordatorio($conexion);
+$id_logueado = $_SESSION['id_usuario']; 
+
+// Aquí definimos $resR
+$resR = $recModel->listarPorUsuario($id_logueado); 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,12 +34,14 @@ $resultado = $recordatorioModel->listar();
                     <div class="card-header-vapp d-flex justify-content-between align-items-center" style="background-color: #000291; color: white; padding: 15px;">
                         <span><i class="fas fa-bell me-2"></i>Avisos del Sistema</span>
                         <span class="badge bg-light text-dark">
-                            <?php echo ($resultado) ? mysqli_num_rows($resultado) : 0; ?>
+                            <?php echo ($resR) ? mysqli_num_rows($resR) : 0; ?>
                         </span>
                     </div>
                     <div class="card-body p-0 bg-white">
-                        <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
-                            <?php while($fila = mysqli_fetch_assoc($resultado)): ?>
+                        <?php 
+                        // CAMBIADO: Usamos $resR y validamos que no sea false
+                        if ($resR && mysqli_num_rows($resR) > 0): ?>
+                            <?php while($fila = mysqli_fetch_assoc($resR)): ?>
                                 <div class="p-4 border-bottom d-flex justify-content-between align-items-center item-notificacion">
                                     <div>
                                         <strong style="color: #000291; font-size: 1.1rem;"><?php echo htmlspecialchars($fila['titulo']); ?></strong>

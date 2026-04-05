@@ -4,20 +4,30 @@ class Vacuna {
     public function __construct($conexion) {
         $this->db = $conexion;
     }
-    public function crear($nombre, $enfermedad, $dosis, $frecuencia, $fecha) {
-        $sql = "INSERT INTO vacunas (nombre_vacuna, enfermedad, dosis, frecuencia, fecha) VALUES (?, ?, ?, ?, ?)";
+    public function crear($id_usuario, $nombre, $enfermedad, $dosis, $frecuencia, $fecha) {
+        $sql = "INSERT INTO vacunas (id_usuario, nombre_vacuna, enfermedad, dosis, frecuencia, fecha) VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = $this->db->prepare($sql)) {
-            $stmt->bind_param("sssss", $nombre, $enfermedad, $dosis, $frecuencia, $fecha);
+            // "i" es para Integer (el ID), las 5 "s" son para los Strings
+            $stmt->bind_param("isssss", $id_usuario, $nombre, $enfermedad, $dosis, $frecuencia, $fecha);
             $res = $stmt->execute();
             $stmt->close();
             return $res;
         }
         return false;
     }
-    public function listar() {
-        $sql = "SELECT * FROM vacunas ORDER BY fecha DESC";
-        return mysqli_query($this->db, $sql);
+
+    // En modelos/Vacuna.php
+    public function listarPorUsuario($id_usuario) {
+    // Usamos prepare para seguridad
+        $sql = "SELECT * FROM vacunas WHERE id_usuario = ? ORDER BY fecha DESC";
+        if ($stmt = $this->db->prepare($sql)) {
+            $stmt->bind_param("i", $id_usuario);
+            $stmt->execute();
+            return $stmt->get_result(); // Esto devuelve el set de resultados para el while
+            }
+        return false;
     }
+
     public function actualizar($id, $nombre, $enfermedad, $dosis, $frecuencia, $fecha) {
         $sql = "UPDATE vacunas SET nombre_vacuna = ?, enfermedad = ?, dosis = ?, frecuencia = ?, fecha = ? WHERE id = ?";
         if ($stmt = $this->db->prepare($sql)) {

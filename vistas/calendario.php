@@ -1,22 +1,37 @@
 <?php
 session_start();
-if(!isset($_SESSION['usuario'])){ header("Location: ../index.php"); exit(); }
+
+// 1. Seguridad: Si no hay sesión, mandamos al index
+if(!isset($_SESSION['usuario']) || !isset($_SESSION['id_usuario'])){ 
+    header("Location: ../index.php"); 
+    exit(); 
+}
+
 include '../database/db.php';
 include '../modelos/Cita.php';
 include '../modelos/recordatorios.php'; 
+
 $citaModel = new Cita($conexion);
 $recModel = new Recordatorio($conexion);
+
+// 2. Obtenemos el ID del usuario logueado
+$id_logueado = $_SESSION['id_usuario'];
+
+// 3. Filtramos los eventos y la lista unificada por el ID del usuario
+$eventos = $citaModel->obtenerEventosCombinadosPorUsuario($id_logueado);
+$resTodo = $citaModel->listarTodoUnificadoPorUsuario($id_logueado);
+
+// Lógica de fechas para el dibujo del calendario
 $mes_actual = date('m');
 $anio_actual = date('Y');
 $primer_dia_mes = date('N', strtotime("$anio_actual-$mes_actual-01")); 
 $ultimo_dia_mes = date('t', strtotime("$anio_actual-$mes_actual-01"));
-$eventos = $citaModel->obtenerEventosCombinados();
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>VacunApp MX - Calendario</title>
+    <title>VacunApp MX - Calendario Personalizado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../style/style-index.css">
@@ -25,19 +40,22 @@ $eventos = $citaModel->obtenerEventosCombinados();
     <header>
         <?php include '../vistas/componentes/navbar.php'; ?>
     </header>
+
     <main class="container mt-5">
         <h2 class="titulo-seccion mb-4" style="color: #000291; font-weight: bold;">Gestión de Citas</h2>
+        
         <div class="row">
             <div class="col-md-4 mb-4">
                 <button class="btn p-3 shadow-sm text-white w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalNuevo" style="background-color: #000291; border-radius: 12px; font-weight: bold;">
                     <i class="fas fa-calendar-plus me-2"></i>Nueva Cita
                 </button>      
+                
                 <div class="card shadow-sm border-0 p-3" style="border-radius: 15px;">
-                    <h6 class="fw-bold mb-3" style="color: #000291;">Próximas Entradas</h6>
+                    <h6 class="fw-bold mb-3" style="color: #000291;">Mis Próximas Entradas</h6>
                     <div style="max-height: 480px; overflow-y: auto;">
-                        <?php
-                        $resTodo = $citaModel->listarTodoUnificado(); 
-                        while($item = mysqli_fetch_assoc($resTodo)):
+                        <?php 
+                        // El while ahora recorre solo los datos del usuario logueado
+                        while($item = mysqli_fetch_assoc($resTodo)): 
                             $esRec = ($item['tipo'] == 'rec');
                             $icono = $esRec ? "🔔" : "💉";
                             $badgeClass = ($item['estado']=='completada'?'bg-success':($item['estado']=='perdida'?'bg-danger':'bg-warning text-dark'));
@@ -61,6 +79,7 @@ $eventos = $citaModel->obtenerEventosCombinados();
                     </div>
                 </div>
             </div>
+
             <div class="col-md-8">
                 <div class="table-responsive shadow-sm rounded">
                     <table class="table table-bordered text-center calendario-tabla bg-white mb-0">
@@ -78,6 +97,8 @@ $eventos = $citaModel->obtenerEventosCombinados();
                                     } else {
                                         $fecha_sql = "$anio_actual-$mes_actual-" . str_pad($dia_num, 2, "0", STR_PAD_LEFT);
                                         $clase_fondo = ($dia_num % 2 == 0) ? "dia-par" : "dia-impar";
+                                        
+                                        // Aquí se pintan los colores solo si la fecha existe para este usuario
                                         if(isset($eventos[$fecha_sql])){
                                             $e = $eventos[$fecha_sql];
                                             if($e == 'pendiente') $clase_fondo = "dia-pendiente";
@@ -99,8 +120,56 @@ $eventos = $citaModel->obtenerEventosCombinados();
             </div>
         </div>
     </main>
-    <div class="modal fade" id="modalNuevo" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><form class="modal-content" action="../controladores/calendario_controller.php" method="POST"><div class="modal-header text-white" style="background-color: #000291;"><h5 class="modal-title">Nueva Cita</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="mb-3"><label class="form-label fw-bold">Nombre Vacuna</label><input type="text" name="nombre_vacuna" class="form-control" required></div><div class="mb-3"><label class="form-label fw-bold">Fecha</label><input type="date" name="fecha_vacuna" class="form-control" required></div></div><div class="modal-footer border-0"><button type="submit" name="btn_guardar" class="btn text-white w-100" style="background-color: #000291;">Guardar</button></div></form></div></div>
-    <div class="modal fade" id="modalEditarCita" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><form class="modal-content" action="../controladores/calendario_controller.php" method="POST"><div class="modal-header text-white" style="background-color: #0d6efd;"><h5 class="modal-title">Editar Cita</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" name="id_editar" id="edit_id"><div class="mb-3"><label class="form-label fw-bold">Nombre Vacuna</label><input type="text" name="nombre_vacuna" id="edit_nombre" class="form-control" required></div><div class="mb-3"><label class="form-label fw-bold">Fecha</label><input type="date" name="fecha_vacuna" id="edit_fecha" class="form-control" required></div></div><div class="modal-footer border-0"><button type="submit" name="btn_editar" class="btn btn-primary w-100">Guardar Cambios</button></div></form></div></div>
+
+    <div class="modal fade" id="modalNuevo" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" action="../controladores/calendario_controller.php" method="POST">
+                <div class="modal-header text-white" style="background-color: #000291;">
+                    <h5 class="modal-title">Nueva Cita</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nombre Vacuna</label>
+                        <input type="text" name="nombre_vacuna" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Fecha</label>
+                        <input type="date" name="fecha_vacuna" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" name="btn_guardar" class="btn text-white w-100" style="background-color: #000291;">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarCita" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" action="../controladores/calendario_controller.php" method="POST">
+                <div class="modal-header text-white" style="background-color: #0d6efd;">
+                    <h5 class="modal-title">Editar Cita</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_editar" id="edit_id">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nombre Vacuna</label>
+                        <input type="text" name="nombre_vacuna" id="edit_nombre" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Fecha</label>
+                        <input type="date" name="fecha_vacuna" id="edit_fecha" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" name="btn_editar" class="btn btn-primary w-100">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const modalEditar = document.getElementById('modalEditarCita');
