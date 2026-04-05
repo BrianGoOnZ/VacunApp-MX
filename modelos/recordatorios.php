@@ -5,18 +5,16 @@ class Recordatorio {
         $this->db = $conexion;
     }
     public function crear($id_usuario, $titulo, $descripcion, $fecha) {
-        // Usamos sentencias preparadas para que no haya errores de formato
-        $sql = "INSERT INTO recordatorios (id_usuario, titulo, descripcion, fecha_recordatorio) VALUES (?, ?, ?, ?)";
-        
-        if ($stmt = $this->db->prepare($sql)) {
-            // "i" es para el ID del usuario (entero)
-            // "sss" son para título, descripción y fecha (strings)
-            $stmt->bind_param("isss", $id_usuario, $titulo, $descripcion, $fecha);
-            $resultado = $stmt->execute();
-            $stmt->close();
-            return $resultado;
-        }
-        return false;
+        // Escapamos los datos para evitar errores por caracteres especiales
+        $t = mysqli_real_escape_string($this->db, $titulo);
+        $d = mysqli_real_escape_string($this->db, $descripcion);
+        $f = mysqli_real_escape_string($this->db, $fecha);
+
+        // IMPORTANTE: Verifica que la columna en tu BD se llame id_usuario
+        $sql = "INSERT INTO recordatorios (id_usuario, titulo, descripcion, fecha_recordatorio) 
+                VALUES ('$id_usuario', '$t', '$d', '$f')";
+                
+        return mysqli_query($this->db, $sql);
     }
 
     public function listarPorUsuario($id_usuario) {

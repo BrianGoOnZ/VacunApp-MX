@@ -62,5 +62,21 @@ class Cita {
         $e = mysqli_real_escape_string($this->db, $estado);
         return mysqli_query($this->db, "UPDATE citas SET estado = '$e' WHERE id = $id");
     }
+
+    public function listarNotificacionesActivas($id_usuario) {
+        $id = mysqli_real_escape_string($this->db, $id_usuario);
+        
+        // Usamos UNION para juntar las dos tablas en una sola lista
+        $sql = "(SELECT id, nombre_vacuna as titulo, fecha, 'cita' as tipo 
+                FROM citas 
+                WHERE id_usuario = '$id' AND aviso_leido = 0)
+                UNION
+                (SELECT id, titulo, fecha_recordatorio as fecha, 'recordatorio' as tipo 
+                FROM recordatorios 
+                WHERE id_usuario = '$id' AND aviso_leido = 0)
+                ORDER BY fecha ASC";
+                
+        return mysqli_query($this->db, $sql);
+    }
 }
 ?>

@@ -1,26 +1,25 @@
 <?php
-include '../database/db.php';
+require_once '../database/db.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $ap_pat = $_POST['apellido_pat'];
-    $ap_mat = $_POST['apellido_mat'];
-    $fecha_nac = $_POST['fecha_nac'];
-    $curp = $_POST['curp'];
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password']; 
-    $foto_nombre = "default.png";
-    if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] == 0) {
-        $ruta_destino = "../img-medios-VApp/usuarios/";
-        if (!file_exists($ruta_destino)) { mkdir($ruta_destino, 0777, true); } 
-        $foto_nombre = time() . "_" . $_FILES['foto_perfil']['name'];
-        move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $ruta_destino . $foto_nombre);
-    }
-    $sql = "INSERT INTO usuarios (nombre, apellido_pat, apellido_mat, curp, fecha_nac, usuario, password, foto_profil) 
-            VALUES ('$nombre', '$ap_pat', '$ap_mat', '$curp', '$fecha_nac', '$usuario', '$password', '$foto_nombre')";
+    $nombre       = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $apellido_pat = mysqli_real_escape_string($conexion, $_POST['apellido_pat']);
+    $curp         = mysqli_real_escape_string($conexion, $_POST['curp']);
+    $fecha_nac    = mysqli_real_escape_string($conexion, $_POST['fecha_nac']);
+    $usuario_name = mysqli_real_escape_string($conexion, $_POST['usuario']);
+    $correo       = mysqli_real_escape_string($conexion, $_POST['correo']);
+    
+    // GUARDAR DIRECTO SIN ENCRIPTAR
+    $password_raw = mysqli_real_escape_string($conexion, $_POST['password']);
+    $foto_default = 'default.png';
+
+    $sql = "INSERT INTO usuarios (nombre, apellido_pat, curp, fecha_nac, usuario, correo, password, foto) 
+            VALUES ('$nombre', '$apellido_pat', '$curp', '$fecha_nac', '$usuario_name', '$correo', '$password_raw', '$foto_default')";
+
     if (mysqli_query($conexion, $sql)) {
-        echo "<script>alert('¡Registro exitoso! Ya puedes iniciar sesión.'); window.location.href='../vistas/login.php';</script>";
+        header("Location: ../index.php?msj=registro_exitoso");
+        exit();
     } else {
         echo "Error: " . mysqli_error($conexion);
     }
 }
-?>
