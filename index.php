@@ -27,19 +27,24 @@ session_start();
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-4">
-                    <div class="card-info d-flex flex-column justify-content-center">           
-                        <?php if(isset($_GET['error']) && $_GET['error'] == 'acceso_denegado'): ?>
-                            <div class="alert alert-danger text-center mb-3" style="border-radius: 10px; font-weight: bold; font-size: 0.85rem;">
-                                <i class="fas fa-lock me-2"></i>Inicia sesión para acceder
-                            </div>
-                        <?php endif; ?>
+                    <?php if(isset($_GET['error']) && $_GET['error'] == 'acceso_denegado'): ?>
+                        <div class="alert alert-danger text-center small mb-3 shadow-sm" style="border-radius: 1em; font-weight: bold; border: 2px solid #dc3545;">
+                            <i class="fas fa-lock me-2"></i>Inicia sesión para entrar
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="card-info">
                         <?php if(isset($_SESSION['usuario'])): ?>
-                            <div class="user-logged py-3 text-center">
+                            <div class="user-logged py-3">
                                 <h3 class="mb-2" style="color: #000291;">Hola, <br><strong><?php echo $_SESSION['usuario']; ?></strong></h3>
                                 <p class="text-muted small mb-4">Sesión activa</p>
-                                <a href="vistas/home.php" class="btn-iniciarsesion mb-2 d-block">Mi Perfil</a>
-                                <a href="/VacunApp-MX/controladores/logout.php" class="btn-logout d-block">Cerrar Sesión</a>
+                                
+                                <div style="width: 90%; margin: 0 auto;">
+                                    <a href="vistas/home.php" class="btn-iniciarsesion" style="width: 100%; margin: 10px 0;">Mi Perfil</a>
+                                    <a href="/VacunApp-MX/controladores/logout.php" class="btn-logout" style="width: 100%; margin: 10px 0; display: block;">Cerrar Sesión</a>
+                                </div>
                             </div>
                         <?php else: ?>
                             <a href="vistas/login.php" class="btn-iniciarsesion">Iniciar Sesión</a>
@@ -47,7 +52,8 @@ session_start();
                         <?php endif; ?>
                     </div>
                 </div>
-            </div> 
+            </div>
+
             <div class="row g-4 mt-2 justify-content-center">
                 <div class="col-md-4 col-sm-6">
                     <div class="card-info">
@@ -69,6 +75,7 @@ session_start();
                 </div>
             </div>
         </div>
+
         <section class="info-educativa mt-5">
             <div class="container">
                 <h2 class="titulo-seccion">Información Educativa</h2>
@@ -127,13 +134,6 @@ session_start();
                 this.closest('.col-lg-4').remove();
             });
         });
-        setTimeout(function() {
-            let alert = document.querySelector('.alert');
-            if(alert) {
-                alert.classList.remove('show');
-                setTimeout(() => alert.remove(), 5000);
-            }
-        }, 5000);
     </script>
 </body>
 </html>
